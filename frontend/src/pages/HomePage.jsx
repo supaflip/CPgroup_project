@@ -3,7 +3,7 @@ import API from "../api/API";
 import WeekList from "../components/WeekList";
 import Signout from "../components/Signout";
 import { Routes, Route } from "react-router-dom";
-import WeekPage from "./WeekPage.js";
+import WeekPage from "./WeekPage.jsx";
 import { Link } from "react-router-dom";
 
 function HomePage() {

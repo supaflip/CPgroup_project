@@ -21,7 +21,8 @@ function WeekList(props) {
     });
   };
 
-  console.log(props.weeks);
+  // console.log(props.weeks)
+  // console.log("Weeks in WeekList:", props.weeks);
 
   return (
     <div>

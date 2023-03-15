@@ -3,10 +3,11 @@ import React from "react";
 
 function WorkoutPage({ workouts }) {
   const params = useParams();
+
   const exercise = workouts.find(
     (workout) => workout.id.toString() === params.workoutID
   );
-
+  console.log("This is exercise", exercise);
   return (
     <div>
       <br></br>

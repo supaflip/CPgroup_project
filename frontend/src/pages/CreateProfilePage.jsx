@@ -1,5 +1,6 @@
-import ProfileForm from "../components/CreateProfileForm";
+import CreateProfileForm from "../components/CreateProfileForm";
 import React from "react";
+
 
 function CreateProfilePage() {
   return (

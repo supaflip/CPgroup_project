@@ -86,6 +86,7 @@ const ProfileForm = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
+      // const base_url = process.env.REACT_APP_BASE_URL
       const response = await axios.post(
         "http://127.0.0.1:8000/workouts/profile/",
         formData,
@@ -103,6 +104,10 @@ const ProfileForm = () => {
         max_frontsquat: "",
         max_backsquat: "",
       });
+
+      // console.log("Handle Submit Response", response) // delete when done
+      // console.log("Response", response.data.user) // delete when done
+      // console.log(response.data.id)
 
       alert("Profile has been created");
       setSubmitted(true);
@@ -193,4 +198,4 @@ const ProfileForm = () => {
   );
 };
 
-export default CreateProfileForm;
+export default ProfileForm;

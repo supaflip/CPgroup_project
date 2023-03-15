@@ -9,6 +9,7 @@ function ProfilePage({ profiles }) {
   const athlete = profiles.find(
     (profile) => profile.id === Number(params.profileID)
   );
+  // console.log("Params ID", params.profileID)  // delete when done testing
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
 
@@ -16,6 +17,7 @@ function ProfilePage({ profiles }) {
     setShowUpdateForm(true);
   };
 
+  console.log("This is athlete", athlete); // delete when done testing
   return (
     <div>
       <br></br>

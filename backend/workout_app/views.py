@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Week, Day, Workout, Profile
 from .serializers import WeekSerializer, DaySerializer, WorkoutSerializer, ProfileSerializer, UserSerializer
 from rest_framework.views import APIView 
@@ -9,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny #IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +69,8 @@ class UserSignupView(APIView):
             serializer = UserSerializer(data, many=True)
         return Response({"result": serializer.data})
 
+
+
 class ProfileViewSet(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -91,7 +93,7 @@ class ProfileViewSet(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-    def get(self, request, id=None):
+    def get(self, request, id=None): 
         if id is not None:
             try: 
                 data = Profile.objects.get(id=id)
@@ -104,7 +106,7 @@ class ProfileViewSet(APIView):
             serializer = ProfileSerializer(data, many=True)
             return Response({"result": serializer.data})
 
-    def put(self, request, id):
+    def put(self, request, id): 
         profile = Profile.objects.get(id=id)
         print(profile, 'this is the profile id in the put statement')
         request.data['user'] = profile.user.id
@@ -121,12 +123,11 @@ class ProfileViewSet(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 class ProfilesViewSet(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ProfileSerializer
-    def get(self, request, id=None):
+    def get(self, request, id=None): 
         if id is not None:
             try: 
                 data = Profile.objects.get(id=id)

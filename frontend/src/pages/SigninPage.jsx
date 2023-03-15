@@ -35,6 +35,7 @@ const SigninPage = () => {
         config
       );
       localStorage.setItem("token", res.data.token);
+      console.log(res.data); //  delete when done
       setRedirect(true);
     } catch (err) {
       console.error(err);
@@ -43,7 +44,7 @@ const SigninPage = () => {
   };
 
   if (redirect) {
-    return <Navigate to="/create/" replace={true} />;
+    return <Navigate to="/create/" replace={true} />; // change navigation to /profile/ for adding data based on Profile model fields
   }
 
   return (

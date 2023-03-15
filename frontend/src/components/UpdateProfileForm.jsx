@@ -22,6 +22,7 @@ const UpdateProfileForm = ({ profile }) => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       try {
+        // const base_url = process.env.REACT_APP_BASE_URL
         const response = await axios.get(
           "http://127.0.0.1:8000/workouts/profile/" + profile.id + "/",
           {
@@ -44,6 +45,7 @@ const UpdateProfileForm = ({ profile }) => {
       user: profile.id,
       [e.target.name]: e.target.value,
     });
+    setFormData({ formData });
   };
 
   const handleUpdate = async (e) => {
@@ -69,6 +71,7 @@ const UpdateProfileForm = ({ profile }) => {
     // submission of the updated information
     const token = localStorage.getItem("token");
     try {
+      // const base_url = process.env.REACT_APP_BASE_URL
       await axios.put(
         "http://127.0.0.1:8000/workouts/profile/" + profile.id + "/",
         formData,
@@ -92,6 +95,7 @@ const UpdateProfileForm = ({ profile }) => {
     if (window.confirm("Are you sure you want to delete your profile?")) {
       const token = localStorage.getItem("token");
       try {
+        // const base_url = process.env.REACT_APP_BASE_URL
         await axios.delete(
           "http://127.0.0.1:8000/workouts/profile/" + profile.id + "/",
           {

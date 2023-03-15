@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--=1=#-2zo!#_t$$pg1%!3o4#9xp@wp$m0omfh#suicdqn8@9eh'
+SECRET_KEY = 'django-insecure-)#$0(e063z&ul7ge8s(7if7m+4mrbg@1p!_vfd_0+p4^blrn8s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -19,9 +19,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'workout_app',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
+    'workout_app',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +41,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+    "http://localhost:5173",
+    # "http://192.168.1.31:3000",
+    # "http://localhost:3000",
 ]
 
 ROOT_URLCONF = 'workout_tracker.urls'
@@ -68,7 +77,7 @@ WSGI_APPLICATION = 'workout_tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
+        'NAME': 'workout_tracker',
     }
 }
 

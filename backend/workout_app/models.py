@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+# Create your models here.
 class Week(models.Model):
-    week_number = models.CharField(max_length=2, unique=True, error_messages={'unique':"This week number already exists"}) # 1, 2,10 
+    week_number = models.CharField(max_length=2, unique=True, error_messages={'unique':"This week number already exists"}) # 1, 2,10 --testing out CharField instead of IntegerField
 
     class Meta:
         verbose_name = "week"
@@ -14,7 +14,7 @@ class Week(models.Model):
 
 class Day(models.Model):
     week = models.ForeignKey(Week, on_delete=models.CASCADE, related_name='days') #week_number in class Week
-    day_number = models.CharField(max_length=4) # e.g. 3.1 (week 3 day 1) 
+    day_number = models.CharField(max_length=4) # 3.1, 3.2, 10.6 --only 10 weeks, only 7 days each week, testing out CharField
 
     class Meta:
         verbose_name = "day"
@@ -39,8 +39,8 @@ class Workout(models.Model):
     def __str__(self):
         return self.title
     
-class Profile(models.Model): # needs first_name, last_name, username fields
-    user = models.OneToOneField(User, on_delete=models.CASCADE) 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     WEIGHTS_CHOICES = [ (1, "LB"), (2, "KG")]
     weights = models.IntegerField(choices=WEIGHTS_CHOICES, default=1, null=False, blank=False) # metric and english, or pounds and kilos
     max_snatch = models.IntegerField(null=True)

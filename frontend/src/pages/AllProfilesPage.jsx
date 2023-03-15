@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../api/API";
 import { Routes, Route } from "react-router-dom";
 import ProfileList from "../components/ProfileList";
-import ProfilePage from "./ProfilePage.js";
+import ProfilePage from "./ProfilePage.jsx";
 
 function AllProfilesPage() {
   const [profiles, setProfiles] = useState([]);

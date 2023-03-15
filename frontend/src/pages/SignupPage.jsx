@@ -32,7 +32,7 @@ const SignupPage = () => {
       const res = await fetch("http://127.0.0.1:8000/accounts/signup/", config);
       const data = await res.json();
       console.log(data);
-      // Navigate to the profile page to get token
+      // Navigate to the profile page
       navigate("/signin/");
     } catch (err) {
       console.error(err);

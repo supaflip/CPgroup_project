@@ -2,7 +2,7 @@ import WorkoutList from "../components/WorkoutList";
 import { useParams } from "react-router-dom";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import WorkoutPage from "./WorkoutPage.js";
+import WorkoutPage from "./WorkoutPage.jsx";
 
 function DayPage({ days }) {
   const params = useParams();

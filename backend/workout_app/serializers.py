@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Week, Day, Workout, Profile, User
 
+# Serializers define the API representation.
 
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
