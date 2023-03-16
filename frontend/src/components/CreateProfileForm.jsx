@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const ProfileForm = () => {
+const CreateProfileForm = () => {
   const [formData, setFormData] = useState({
     user: "",
     weights: "",
@@ -42,7 +42,7 @@ const ProfileForm = () => {
       const userIndex = Math.max(
         ...response.data.result.map((item) => item.user)
       );
-
+      console.log("User Index", userIndex)
       setFormData({
         ...formData,
         user: userIndex,
@@ -67,6 +67,7 @@ const ProfileForm = () => {
       const user = response.data.result.find(
         (object) => object === localStorage.getItem("object")
       );
+      console.log("ID", user.id)
       setProfileData(user.id);
     } catch (err) {
       console.log(err);
@@ -198,4 +199,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default CreateProfileForm;

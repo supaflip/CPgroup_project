@@ -93,18 +93,33 @@ class ProfileViewSet(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-    def get(self, request, id=None): 
-        if id is not None:
-            try: 
-                data = Profile.objects.get(id=id)
-                serializer = ProfileSerializer(data)
-                return Response(serializer.data)
-            except Profile.DoesNotExist:
-                return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
-        else:
-            data = Profile.objects.all()
-            serializer = ProfileSerializer(data, many=True)
-            return Response({"result": serializer.data})
+    
+
+    def get(self, request): # id?
+        user_id = Token.objects.get(key=request.auth.key).user_id
+        try: 
+            data = Profile.objects.get(id=user_id)
+            serializer = ProfileSerializer(data)
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+        # else:
+        #     data = Profile.objects.all()
+        #     serializer = ProfileSerializer(data, many=True)
+        #     return Response({"result": serializer.data})
+
+    # def get(self, request, id=None): 
+    #     if id is not None:
+    #         try: 
+    #             data = Profile.objects.get(id=id)
+    #             serializer = ProfileSerializer(data)
+    #             return Response(serializer.data)
+    #         except Profile.DoesNotExist:
+    #             return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    #     else:
+    #         data = Profile.objects.all()
+    #         serializer = ProfileSerializer(data, many=True)
+    #         return Response({"result": serializer.data})
 
     def put(self, request, id): 
         profile = Profile.objects.get(id=id)
