@@ -8,19 +8,19 @@ import SignupPage from './pages/SignupPage.jsx'
 import AllProfilesPage from './pages/AllProfilesPage.jsx'
 import StartPage from './pages/StartPage.jsx'
 import Layout from './hocs/Layout';
-import AppNav from './components/AppNav';
-import { Provider } from 'react-redux';
-
+import React from 'react';
 function App() {
+  const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
+  //initial value should be 
   return (
     <div>
       <Router> 
-        <Layout>
+        <Layout loggedin={loggedin} setLoggedin={setLoggedin}>
           <Routes>
             <Route exact path="/app" element={<StartPage />} />
             <Route exact path="/workouts/*" element={<HomePage />} />
-            <Route exact path="/signin/" element={<SigninPage />} />
-            <Route exact path="/signup/" element={<SignupPage />} />
+            <Route exact path="/signin/" element={<SigninPage setLoggedin={setLoggedin}/>} />
+            <Route exact path="/signup/" element={<SignupPage setLoggedin={setLoggedin}/>} />
             <Route exact path="/create/" element={<CreateProfilePage />} />
             <Route exact path="/profile/*" element={<AllProfilesPage />} />
             </Routes>
