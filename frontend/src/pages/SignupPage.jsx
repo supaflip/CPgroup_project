@@ -1,42 +1,42 @@
-import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 // import ProfileForm from "../components/ProfileForm"
-import axios from "axios";
+import axios from 'axios'
 
-const SignupPage = () => {
+
+const SignupPage = ({setLoggedin}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: ''
   });
 
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false)
 
   const { username, password } = formData;
 
-  const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState(null)
 
-  const onChange = (e) => {
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     const user = {
       username,
-      password,
+      password
     };
 
     try {
       const config = {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
       };
-      const res = await fetch("http://127.0.0.1:8000/accounts/signup/", config);
+      const res = await fetch('http://127.0.0.1:8000/accounts/signup/', config);
       const data = await res.json();
       console.log(data);
     } catch (err) {
@@ -45,46 +45,43 @@ const SignupPage = () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = JSON.stringify(user);
-      const res = await axios.post(
-        "http://127.0.0.1:8000/accounts/signin/",
-        body,
-        config
-      );
-      localStorage.setItem("token", res.data.token);
-      console.log(res.data); //  delete when done
-      setRedirect(true);
-      setIsAuthenticated(true);
+          'Content-Type': 'application/json'
+        }
+      }
+      const body = JSON.stringify(user)
+      const res = await axios.post('http://127.0.0.1:8000/accounts/signin/', body, config)
+      localStorage.setItem('token', res.data.token)
+      console.log(res.data) //  delete when done
+      setRedirect(true)
+      setLoggedin(true);
     } catch (err) {
-      console.error(err);
-      setError("Invalid credentials");
+      console.error(err)
+      setError('Invalid credentials')
     }
-  };
+  }
+
 
   if (redirect) {
-    return <Navigate to="/create/" replace={true} />; // change navigation to /profile/ for adding data based on Profile model fields
+    return <Navigate to="/create/" replace={true}/>  // change navigation to /profile/ for adding data based on Profile model fields
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="textalignleft">Sign Up</h1>
-      <p className="textalignleft">Create your Bar Path Account</p>
-      <form className="textalignleft" onSubmit={(e) => onSubmit(e)}>
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Username*"
-            name="username"
-            value={username}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        {/* <div className='form-group'>
+    <div className='container mt-5'>
+        <h1 className="textalignleft" >Sign Up</h1>
+        <p className="textalignleft">Create your Bar Path Account</p>
+        <form className="textalignleft" onSubmit={e => onSubmit(e)}>
+            <div className='form-group'>
+                <input
+                    className='form-control'
+                    type='text'
+                    placeholder='Username*'
+                    name='username'
+                    value={username}
+                    onChange={e => onChange(e)}
+                    required
+                />
+            </div>
+            {/* <div className='form-group'>
                 <input
                     className='form-control'
                     type='email'
@@ -95,19 +92,19 @@ const SignupPage = () => {
                     required
                 />
             </div> */}
-        <div className="form-group">
-          <input
-            className="form-control"
-            type="password"
-            placeholder="Password*"
-            name="password"
-            value={password}
-            onChange={(e) => onChange(e)}
-            minLength="6"
-            required
-          />
-        </div>
-        {/* <div className='form-group'>
+            <div className='form-group'>
+                <input
+                    className='form-control'
+                    type='password'
+                    placeholder='Password*'
+                    name='password'
+                    value={password}
+                    onChange={e => onChange(e)}
+                    minLength='6'
+                    required
+                />
+            </div>
+            {/* <div className='form-group'>
                 <input
                     className='form-control'
                     type='password'
@@ -119,95 +116,44 @@ const SignupPage = () => {
                     required
                 />
             </div> */}
-        <button className="btnbtn-primary" type="submit">
-          Register
-        </button>
-      </form>
-      <br></br>
-      <p className="textalignleft">
-        Already have an account? <Link to="/signin">Sign In</Link>
-      </p>
+            <button className='btnbtn-primary' type='submit'>Register</button>
+        </form>
+        <br></br>
+        <p className="textalignleft">
+            Already have an account? <Link to='/signin'>Sign In</Link>
+        </p>
     </div>
-  );
-};
+);
+}
 
-export default SignupPage;
+export default SignupPage
 
-
-
-
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// const SignupPage = () => {
-//   const navigate = useNavigate();
-//   const [formData, setFormData] = useState({
-//     username: "",
-//     password: "",
-//   });
-
-//   const { username, password } = formData;
-
-//   const onChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
-//     const newUser = {
-//       username,
-//       password,
-//     };
-
-//     try {
-//       const config = {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(newUser),
-//       };
-//       const res = await fetch("http://127.0.0.1:8000/accounts/signup/", config);
-//       const data = await res.json();
-//       console.log(data);
-//       // Navigate to the profile page
-//       navigate("/signin/");
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <br></br>
-//       <h2>Bar Path Program</h2>
-//       <hr />
-//       <br></br>
-//       <h3>Create An Account</h3>
-//       <br></br>
-//       <form onSubmit={(e) => onSubmit(e)}>
-//         <input
-//           type="text"
-//           placeholder="Username"
-//           name="username"
-//           value={username}
-//           onChange={(e) => onChange(e)}
-//         />
-//         <br></br>
-//         <br></br>
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           name="password"
-//           value={password}
-//           onChange={(e) => onChange(e)}
-//         />
-//         <br></br>
-//         <br></br>
-//         <input type="submit" value="Signup" />
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default SignupPage;
+{/* <div>
+      <br></br>
+      <h2>Bar Path Program</h2>
+      <hr />
+      <br></br>
+      <h3>Create An Account</h3>
+      <br></br>
+      <form onSubmit={e => onSubmit(e)}>
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          value={username}
+          onChange={e => onChange(e)}
+        />
+        <br></br>
+        <br></br>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={e => onChange(e)}
+        />
+        <br></br>
+        <br></br>
+        <input type="submit" value="Signup" />
+      </form>
+    </div> */}

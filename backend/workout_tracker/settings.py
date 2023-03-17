@@ -1,4 +1,5 @@
 from pathlib import Path
+# import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,32 +8,38 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)#$0(e063z&ul7ge8s(7if7m+4mrbg@1p!_vfd_0+p4^blrn8s'
+SECRET_KEY = 'django-insecure-i%o&*5t!)*axv9r24&yu@50gtl&&6#80j&@q8lpkf0hqlp71b)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# SECRET_KEY = os.getenv("SECRET_KEY")
+
+# DEBUG = True if os.getenv("DEBUG") == "True" else False
+
+# ALLOWED_HOSTS = ["*"]
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'workout_app',
-    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'workout_app',
+    'rest_framework',
+    'accounts',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,8 +83,8 @@ WSGI_APPLICATION = 'workout_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'workout_tracker',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
