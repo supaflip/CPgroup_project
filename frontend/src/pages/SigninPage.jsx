@@ -3,15 +3,15 @@ import axios from "axios";
 // import { Routes, Route } from "react-router-dom";
 import { Link, Navigate } from "react-router-dom";
 
-const SigninPage = () => {
+const SigninPage = ({setLoggedin}) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
   const { username, password } = formData;
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,7 +39,7 @@ const SigninPage = () => {
       localStorage.setItem("token", res.data.token);
       console.log(res.data); //  delete when done
       setRedirect(true);
-      setIsAuthenticated(true);
+      setLoggedin(true);
     } catch (err) {
       console.error(err);
       setError("Invalid credentials");

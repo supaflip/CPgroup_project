@@ -1,24 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
-import Signout from "./Signout";
+import { Navigate } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import axios from "axios";
-import isAuthenticated from "../pages/SigninPage";
 
-function AppNav({ onSignout }) {
-  const [loggedin, setLoggedin] = React.useState(false);
+function AppNav({loggedin}) {
 
-  console.log(window.location.pathname);
+  const [redirect, setRedirect] = useState(false);
 
-  React.useEffect(() => {
-    if (loggedin && window.location.pathname != "/app") {
-      window.location.reload(false);
-      console.log(loggedin);
-    } else {
-      setLoggedin(localStorage.getItem("token"));
-    }
-  }, []);
 
   const handleSignout = async () => {
     try {
@@ -73,11 +61,6 @@ function AppNav({ onSignout }) {
     </Fragment>
   );
 
-  const logoutHandler = () => {
-    Signout();
-  };
-
-  const [redirect, setRedirect] = useState(false);
 
   return (
     <div>
@@ -99,9 +82,5 @@ function AppNav({ onSignout }) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.loggedin,
-});
 
 export default AppNav;

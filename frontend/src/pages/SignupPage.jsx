@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 // import ProfileForm from "../components/ProfileForm"
 import axios from "axios";
 
-const SignupPage = () => {
+const SignupPage = ({setLoggedin}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -15,7 +15,6 @@ const SignupPage = () => {
   const { username, password } = formData;
 
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -57,7 +56,7 @@ const SignupPage = () => {
       localStorage.setItem("token", res.data.token);
       console.log(res.data); //  delete when done
       setRedirect(true);
-      setIsAuthenticated(true);
+      setLoggedin(true);
     } catch (err) {
       console.error(err);
       setError("Invalid credentials");
