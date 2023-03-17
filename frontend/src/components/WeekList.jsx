@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DayList from "./DayList";
 // import '../App.css';
 
 function WeekList(props) {
@@ -18,15 +17,24 @@ function WeekList(props) {
         <Container>
         <Row>
         {Array.from(props.weeks).slice(0,5).map((week, index) => (
-          <Col>
-          <Card eventKey={index}>
+          <Col key={index}>
+          <Card eventkey={index}>
             <Card.Header>
               WEEK {week.week_number}
             </Card.Header>
             <Card.Body>
-              <Link to={`week/${week.week_number}/`}>
-                Days
-              </Link>
+              <Accordion>
+                <Accordion.Item key={index} eventkey={index}>
+                  <Accordion.Header>
+                    DAY {week.days.day_number}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Link to={`week/${week.week_number}/`}>
+                      Days
+                    </Link>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
             </Card.Body>
           </Card>
           </Col>
@@ -34,8 +42,8 @@ function WeekList(props) {
       </Row>
       <Row>
         {Array.from(props.weeks).slice(5,10).map((week, index) => (
-          <Col>
-          <Card eventKey={index}>
+          <Col key={index}>
+          <Card>
             <Card.Header>
               WEEK {week.week_number}
             </Card.Header>
@@ -59,7 +67,7 @@ function WeekList(props) {
       <h3>Select the Week</h3>
       <br></br>
       <div className="list-container">
-        <p>{renderWeeks()}</p>
+        {renderWeeks()}
       </div>
       <br></br>
       <br></br>
