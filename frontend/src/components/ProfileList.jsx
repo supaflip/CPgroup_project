@@ -19,7 +19,7 @@ function ProfileList(props) {
           const profile = props.profiles[key];
 
           if (index % 4 === 0) {
-            // Starts a new row for every 4 cards ("md=3" means Col component takes up 3 out of 12 grid columns, meaning there are 4 columns/cards per row)
+            // Starts a new row for every 4 cards ("md={3}" means Col component takes up 3 out of 12 grid columns, meaning there are 4 columns/cards per row)
             return (
               <Row key={`row-${index}`} className="mb-3">
                 {profileKeys.slice(index, index + 4).map((key) => {
