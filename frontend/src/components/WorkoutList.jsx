@@ -1,31 +1,53 @@
-import { Link } from "react-router-dom"
-import "../App.css"
+import React, {useState} from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-function WorkoutList (props) {
-  
+function WorkoutModal(props) {
+  const [modalShow, setModalShow] = useState(false);
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
+
   const renderWorkouts = () => {
     if (!props.workouts) {
       return 'Hello there is nothing' // change to 'There are no workouts yet' or null when done testing
     }
-    
-    
-    return props.workouts.map((workout, index) => {
-      return (
-        <p><Link to={`workout/${workout.id}/`}> { workout.title }</Link></p>
+
+  return props.workouts.map((workout, index) => {
+    return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        { workout.title }
+      </Button>
+
+      <Modal
+        show={modalShow}
+        onHide={handleClose}
+        backdrop={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {workout.title}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Workout Body
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+    </>
       )
     })
   }
-  
-  console.log(props.workouts)
-  // console.log("Workouts in WorkoutList:", props.workouts);  // delete when done testing
 
   return (
     <div>
       <div className="list-container">
-        { renderWorkouts() }
+        {renderWorkouts()}
       </div>
     </div>
   )
 }
 
-export default WorkoutList
+export default WorkoutModal;

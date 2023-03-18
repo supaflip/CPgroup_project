@@ -1,6 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import "../App.css"
-import WorkoutList from "./WorkoutList";
+import WorkoutModal from './WorkoutList';
 
 function DayList (props) {
   
@@ -12,14 +12,14 @@ function DayList (props) {
     // lists only the days that are in the week
     return props.days.map((day, index) => {
       return (
-        <div>
+        <div key={index}>
           <Accordion defaultActiveKey="0">
-            <Accordion.Item key={index} eventkey={index}>
+            <Accordion.Item>
               <Accordion.Header>
                     DAY {day.day_number.slice(-1)}
                   </Accordion.Header>
                   <Accordion.Body>
-                    <WorkoutList
+                    <WorkoutModal
                       day={day.day_number}
                       workouts={day.workouts}
                     />
@@ -34,7 +34,7 @@ function DayList (props) {
     return (
     <div>
       <div className="list-container">
-        <p>{ renderDays() }</p>
+        { renderDays() }
       </div>
     </div>
   )
