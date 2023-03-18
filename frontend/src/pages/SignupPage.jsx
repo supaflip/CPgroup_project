@@ -3,7 +3,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 // import ProfileForm from "../components/ProfileForm"
 import axios from 'axios'
 
-
 const SignupPage = ({setLoggedin}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -14,7 +13,7 @@ const SignupPage = ({setLoggedin}) => {
   const [redirect, setRedirect] = useState(false)
 
   const { username, password } = formData;
-
+  
   const [error, setError] = useState(null)
 
   const onChange = e => {
@@ -45,14 +44,18 @@ const SignupPage = ({setLoggedin}) => {
     try {
       const config = {
         headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      const body = JSON.stringify(user)
-      const res = await axios.post('http://127.0.0.1:8000/accounts/signin/', body, config)
-      localStorage.setItem('token', res.data.token)
-      console.log(res.data) //  delete when done
-      setRedirect(true)
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify(user);
+      const res = await axios.post(
+        "http://127.0.0.1:8000/accounts/signin/",
+        body,
+        config
+      );
+      localStorage.setItem("token", res.data.token);
+      console.log(res.data); //  delete when done
+      setRedirect(true);
       setLoggedin(true);
     } catch (err) {
       console.error(err)

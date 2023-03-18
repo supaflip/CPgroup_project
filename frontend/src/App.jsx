@@ -12,8 +12,8 @@ import Layout from './hocs/Layout';
 import AppNav from './components/AppNav';
 import { Provider } from 'react-redux';
 import MyProfilePage from './pages/MyProfilePage';
-
 import React from 'react';
+
 function App() {
   const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
   //initial value should be 
@@ -35,4 +35,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

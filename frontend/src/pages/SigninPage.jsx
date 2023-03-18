@@ -5,13 +5,13 @@ import { Link, Navigate } from 'react-router-dom'
 
 const SigninPage = ({setLoggedin}) => {
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  })
-  const { username, password } = formData
-  const [redirect, setRedirect] = useState(false)
-  const [error, setError] = useState(null)
+    username: "",
+    password: "",
+  });
 
+  const { username, password } = formData;
+  const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(null);
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -27,14 +27,18 @@ const SigninPage = ({setLoggedin}) => {
     try {
       const config = {
         headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      const body = JSON.stringify(user)
-      const res = await axios.post('http://127.0.0.1:8000/accounts/signin/', body, config)
-      localStorage.setItem('token', res.data.token)
-      console.log(res.data) //  delete when done
-      setRedirect(true)
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify(user);
+      const res = await axios.post(
+        "http://127.0.0.1:8000/accounts/signin/",
+        body,
+        config
+      );
+      localStorage.setItem("token", res.data.token);
+      console.log(res.data); //  delete when done
+      setRedirect(true);
       setLoggedin(true);
     } catch (err) {
       console.error(err)
