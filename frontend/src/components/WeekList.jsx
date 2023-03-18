@@ -16,17 +16,7 @@ function WeekList (props) {
       return 'Hello there is nothing'  // change to null when done testing
     }
 
-//  this return statement from before cards integrated into weeklist
-//    return props.weeks.map((week, index) => {
-//      return (
-//        <div>
-//          <div key={index} >
-//            <p><Link to={`week/${week.week_number}/`}>WEEK { week.week_number }</Link></p>
-//          </div>
-//        </div>
-//      )
-//    })
-//  }
+
 
       return (
         <Container>
@@ -66,8 +56,8 @@ function WeekList (props) {
   )};
 
 
-  console.log(props.weeks)
-  // console.log("Weeks in WeekList:", props.weeks);  // delete when done testing
+  console.log("Weeks data in Weeklist", props.weeks) // delete when done testing
+  
 
   return (
     <div className="workoutcontainer">
@@ -85,6 +75,19 @@ function WeekList (props) {
 
 
 export default WeekList;
+
+
+//  this is the return statement from before cards were integrated into weeklist
+//    return props.weeks.map((week, index) => {
+//      return (
+//        <div>
+//          <div key={index} >
+//            <p><Link to={`week/${week.week_number}/`}>WEEK { week.week_number }</Link></p>
+//          </div>
+//        </div>
+//      )
+//    })
+//  }
 
 
           {/* // <Accordion defaultActiveKey="0">
