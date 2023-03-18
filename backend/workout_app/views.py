@@ -9,7 +9,10 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 import logging
 
-
+# from rest_framework import viewsets
+# from django.shortcuts import get_object_or_404
+# from rest_framework.decorators import api_view
+# from rest_framework import generics, permissions
 logger = logging.getLogger(__name__)
 
 class WeekViewSet(APIView):
@@ -33,7 +36,7 @@ class DayViewSet(APIView):
         return Response({"result": serializer.data})
     
 class WorkoutViewSet(APIView):
-    def get(self, request, id=None):
+    def get(self, request, id=None): # id or title?
         if id: 
             data = Workout.objects.get(id=id)
             serializer = DaySerializer(data)
@@ -71,6 +74,8 @@ class UserSignupView(APIView):
 
 
 
+    
+
 class ProfileViewSet(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -93,12 +98,13 @@ class ProfileViewSet(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-    
-
     def get(self, request): # id?
+        print("test")
+        print(request.auth.key)
         user_id = Token.objects.get(key=request.auth.key).user_id
+        print(user_id)
         try: 
-            data = Profile.objects.get(id=user_id)
+            data = Profile.objects.get(user_id=user_id)
             serializer = ProfileSerializer(data)
             return Response(serializer.data)
         except Profile.DoesNotExist:
@@ -108,20 +114,24 @@ class ProfileViewSet(APIView):
         #     serializer = ProfileSerializer(data, many=True)
         #     return Response({"result": serializer.data})
 
-    # def get(self, request, id=None): 
-    #     if id is not None:
+
+    # def get(self, request): # id?  //this is your retrieve method for a one profile
+    #     print(request.user.id, "this is user.id")
+    #     user_id = request.user.id
+    #     print(user_id, 'this is user_id')
+    #     if user_id:
     #         try: 
-    #             data = Profile.objects.get(id=id)
+    #             data = Profile.objects.get(user_id=user_id)
     #             serializer = ProfileSerializer(data)
-    #             return Response(serializer.data)
-    #         except Profile.DoesNotExist:
-    #             return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+    #         except:
+    #             return Response({"result": "None Found"})
     #     else:
     #         data = Profile.objects.all()
     #         serializer = ProfileSerializer(data, many=True)
-    #         return Response({"result": serializer.data})
+    #     return Response({"result": serializer.data})
 
-    def put(self, request, id): 
+    def put(self, request, id): # id?
+        # user_id = request.user.id
         profile = Profile.objects.get(id=id)
         print(profile, 'this is the profile id in the put statement')
         request.data['user'] = profile.user.id
@@ -138,11 +148,14 @@ class ProfileViewSet(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
+
+
 class ProfilesViewSet(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ProfileSerializer
-    def get(self, request, id=None): 
+    def get(self, request, id=None): # id?
         if id is not None:
             try: 
                 data = Profile.objects.get(id=id)
@@ -154,3 +167,158 @@ class ProfilesViewSet(APIView):
             data = Profile.objects.all()
             serializer = ProfileSerializer(data, many=True)
             return Response({"result": serializer.data})
+        
+
+
+    
+
+# from .models import Week, Day, Workout, Profile
+# from .serializers import WeekSerializer, DaySerializer, WorkoutSerializer, ProfileSerializer, UserSerializer
+# from rest_framework.views import APIView 
+# from rest_framework.response import Response
+# from rest_framework import authentication, status
+# from rest_framework.authentication import TokenAuthentication # permissions
+# from rest_framework.permissions import IsAuthenticated, AllowAny #IsAdminUser
+# from django.contrib.auth.models import User
+# from rest_framework.authtoken.models import Token
+# import logging
+
+# # from rest_framework import viewsets
+# # from django.shortcuts import get_object_or_404
+# # from rest_framework.decorators import api_view
+# # from rest_framework import generics, permissions
+# logger = logging.getLogger(__name__)
+
+# class WeekViewSet(APIView):
+#     def get(self, request, week_number=None):
+#         if week_number: 
+#             data = Week.objects.get(week_number=week_number)
+#             serializer = WeekSerializer(data)
+#         else:
+#             data = Week.objects.all()
+#             serializer = WeekSerializer(data, many=True)
+#         return Response({"result": serializer.data})
+    
+# class DayViewSet(APIView):
+#     def get(self, request, day_number=None):
+#         if day_number: 
+#             data = Day.objects.get(day_number=day_number)
+#             serializer = DaySerializer(data)
+#         else:
+#             data = Day.objects.all()
+#             serializer = DaySerializer(data, many=True)
+#         return Response({"result": serializer.data})
+    
+# class WorkoutViewSet(APIView):
+#     def get(self, request, id=None): # id or title?
+#         if id: 
+#             data = Workout.objects.get(id=id)
+#             serializer = DaySerializer(data)
+#         else:
+#             data = Workout.objects.all()
+#             serializer = WorkoutSerializer(data, many=True)
+#         return Response({"result": serializer.data})
+    
+# class UserSignupView(APIView):
+#     permission_classes = [AllowAny]
+
+#     def post(self, request):
+#         user_serializer = UserSerializer(data=request.data)
+#         if user_serializer.is_valid():
+#             user = user_serializer.save()
+#             profile_data = {'user': user.id}
+#             print(profile_data)
+#             profile_serializer = ProfileSerializer(data=profile_data)
+#             if profile_serializer.is_valid():
+#                 print("Hello")
+#                 profile_serializer.save()
+#             token = Token.objects.create(user=user)
+#             return Response({'token': token.key}, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+# class ProfileViewSet(APIView):
+#     authentication_classes = [authentication.TokenAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = ProfileSerializer
+
+#     def __init__(self):
+#         print('ProfileViewSet initialized') 
+    
+        
+#     def post(self, request):
+#         logger.debug('post method called') # add this line to ensure the view is being called
+#         data = request.data
+#         data["user"] = request.user.id
+#         serializer = ProfileSerializer(data=request.data)
+#         if serializer.is_valid():
+#             profile = serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             logger.debug(serializer.errors) # add this line to print any validation errors
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        
+#     def get(self, request, id=None): # id?
+#         if id is not None:
+#             try: 
+#                 data = Profile.objects.get(id=id)
+#                 serializer = ProfileSerializer(data)
+#                 return Response(serializer.data)
+#             except Profile.DoesNotExist:
+#                 return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+#         else:
+#             data = Profile.objects.all()
+#             serializer = ProfileSerializer(data, many=True)
+#             return Response({"result": serializer.data})
+
+
+#     # def get(self, request): # id?  //this is your retrieve method for a one profile
+#     #     print(request.user.id, "this is user.id")
+#     #     user_id = request.user.id
+#     #     print(user_id, 'this is user_id')
+#     #     if user_id:
+#     #         try: 
+#     #             data = Profile.objects.get(user_id=user_id)
+#     #             serializer = ProfileSerializer(data)
+#     #         except:
+#     #             return Response({"result": "None Found"})
+#     #     else:
+#     #         data = Profile.objects.all()
+#     #         serializer = ProfileSerializer(data, many=True)
+#     #     return Response({"result": serializer.data})
+
+#     def put(self, request, id): # id?
+#         # user_id = request.user.id
+#         profile = Profile.objects.get(id=id)
+#         print(profile, 'this is the profile id in the put statement')
+#         request.data['user'] = profile.user.id
+#         serializer = ProfileSerializer(profile, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, user_id=None):
+#         profile = Profile.objects.get(user_id=user_id)
+#         profile.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# class ProfilesViewSet(APIView):
+#     authentication_classes = [authentication.TokenAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = ProfileSerializer
+#     def get(self, request, id=None): # id?
+#         if id is not None:
+#             try: 
+#                 data = Profile.objects.get(id=id)
+#                 serializer = ProfileSerializer(data)
+#                 return Response(serializer.data)
+#             except Profile.DoesNotExist:
+#                 return Response({"result": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
+#         else:
+#             data = Profile.objects.all()
+#             serializer = ProfileSerializer(data, many=True)
+#             return Response({"result": serializer.data})

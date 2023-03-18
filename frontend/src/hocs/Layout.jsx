@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import AppNav from "../components/AppNav";
 
+
 const Layout = (props) => {
- 
+
   return (
     <div>
       <AppNav loggedin={props.loggedin}/>
@@ -11,5 +12,5 @@ const Layout = (props) => {
       {props.children}
     </div>
   );
-};
+}
 export default Layout;
