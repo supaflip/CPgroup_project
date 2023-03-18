@@ -1,18 +1,24 @@
-import DayList from "../components/DayList";
-import { useParams } from "react-router-dom";
-import React from "react";
+import DayList from "../components/DayList"
+import { useParams } from "react-router-dom"
+import React from "react"
 import { Routes, Route } from "react-router-dom";
-import DayPage from "./DayPage.jsx";
+import DayPage from './DayPage.jsx'
 
-function WeekPage({ weeks }) {
-  const params = useParams();
 
-  const answer = weeks.find((week) => week.week_number === params.week_number);
+function WeekPage({weeks}) {
+   
+  const params = useParams()
 
-  console.log("Days in WeekPage:", params.week_number); // delete when done testing
+  const answer = weeks.find(week => week.week_number === params.week_number)
+  // console.log(answer, params)
+  // console.log("Weekpage", weeks) // week_number for use to show only the days under that week
+
+   
+ 
+  console.log("Days in WeekPage:", params.week_number);  // delete when done testing
 
   return (
-    <div>
+    <div className="weekpage">
       <Routes>
         <Route
           path="/"
@@ -27,11 +33,13 @@ function WeekPage({ weeks }) {
         />
         <Route
           path="/day/:day_number/*"
-          element={<DayPage days={answer.days} />}
+          element={<DayPage days={answer.days}/>}
         />
       </Routes>
+      
     </div>
-  );
+  )
 }
 
-export default WeekPage;
+
+export default WeekPage
