@@ -21,10 +21,8 @@ function WorkoutList (props) {
 
   return (
     <div>
-      <h3>Select the Exercise</h3>
-      <br></br>
       <div className="list-container">
-        <p>{ renderWorkouts() }</p>
+        { renderWorkouts() }
       </div>
     </div>
   )
