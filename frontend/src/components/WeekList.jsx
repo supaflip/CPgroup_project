@@ -51,9 +51,6 @@ function WeekList(props) {
       </Container>
   )};
 
-  console.log(props.weeks);
-  // console.log("Weeks in WeekList:", props.weeks);  // delete when done testing
-
   return (
     <div>
       <h3>Select the Workout</h3>

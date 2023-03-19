@@ -1,6 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import "../App.css"
-import WorkoutModal from './WorkoutList';
+import WorkoutList from './WorkoutList';
 
 function DayList (props) {
   
@@ -19,7 +19,7 @@ function DayList (props) {
                     DAY {day.day_number.slice(-1)}
                   </Accordion.Header>
                   <Accordion.Body>
-                    <WorkoutModal
+                    <WorkoutList
                       day={day.day_number}
                       workouts={day.workouts}
                     />
