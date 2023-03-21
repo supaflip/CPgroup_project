@@ -6,10 +6,16 @@ import UpdateProfileForm from "../components/UpdateProfileForm"
 
 function MyProfilePage() {
   const [profile, setProfile] = useState([]);  
-  const [showUpdateForm, setShowUpdateForm] = useState(false)
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [select, setSelect] = useState("biceps");
 
   const handleButtonClick = () => {
     setShowUpdateForm(true)
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    API.fetchMuscleWorkout(select)
   }
 
   useEffect(() => {
@@ -51,6 +57,15 @@ function MyProfilePage() {
     </div>
     <br></br>
     <br></br>
+    <form>
+    <select onChange={(e) => setSelect(e.target.value)}>
+      <option value="biceps">biceps</option>
+      <option value="chest">chest</option>
+      <option value="glutes">glutes</option>
+    </select>
+    <br></br>
+    <button type="submit" onClick={handleFormSubmit}>Search</button>
+    </form>
     
   </div>
   );

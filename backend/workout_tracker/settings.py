@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'rest_framework.authtoken',
+    'django_seed'
 ]
 
 MIDDLEWARE = [
@@ -132,9 +133,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', # protects every resource by default
+        #'rest_framework.permissions.IsAuthenticated', # protects every resource by default
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication', # how we will authenticate
+        #'rest_framework.authentication.TokenAuthentication', # how we will authenticate
     ]
 }

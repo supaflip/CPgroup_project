@@ -8,12 +8,17 @@ from rest_framework.permissions import IsAuthenticated, AllowAny #IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 import logging
+import requests
+import random
+import os
 
 # from rest_framework import viewsets
 # from django.shortcuts import get_object_or_404
 # from rest_framework.decorators import api_view
 # from rest_framework import generics, permissions
 logger = logging.getLogger(__name__)
+
+WORKOUT_API = 'https://api.api-ninjas.com/v1/exercises?muscle='
 
 class WeekViewSet(APIView):
     def get(self, request, week_number=None):
@@ -167,6 +172,22 @@ class ProfilesViewSet(APIView):
             data = Profile.objects.all()
             serializer = ProfileSerializer(data, many=True)
             return Response({"result": serializer.data})
+        
+
+class WorkoutHelper(APIView):
+    #authentication_classes = [authentication.TokenAuthentication]
+    #permission_classes = [IsAuthenticated]
+    def post(self, request):
+        print(request.data)
+        muscle = request.data['muscle']
+        response = requests.get(f'{WORKOUT_API}{muscle}', headers={'X-Api-Key': os.enviro('WORKOUT_API_KEY')})
+        if response.status_code == requests.codes.ok:
+            return Response(random.choice(response.json()))
+        else:
+            print("Error", response.status_code, response.text)
+
+
+
         
 
 

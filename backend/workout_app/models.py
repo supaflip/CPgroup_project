@@ -24,8 +24,8 @@ class Day(models.Model):
         return f'Day {self.day_number}'
 
 class Workout(models.Model):
-    week = models.ForeignKey(Week, on_delete=models.CASCADE, related_name='workouts', default='1')  
-    day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='workouts', default='1.1')
+    week = models.ForeignKey(Week, on_delete=models.CASCADE, related_name='workouts')  
+    day = models.ForeignKey(Day, on_delete=models.CASCADE, related_name='workouts')
     title = models.CharField(max_length=50) # Back Squat, High Pulls, Pull to Hip w/ Pause+Clean+Jerk
     note = models.CharField(max_length=255, null=True, blank=True) # brief note or just general directive instead of numbers (e.g., 'to a heavy 2RM for the day')
     sets = models.CharField(max_length=2, null=True, blank=True) # 5, 12
