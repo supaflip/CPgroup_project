@@ -59,6 +59,7 @@ button:focus-visible {
   background-color: white;
   padding: 1rem;
   text-align: center;
+  height:auto;
   width: 30rem;
   z-index: 10;
   position: fixed;
@@ -181,3 +182,4 @@ button:focus-visible {
   transform: translate(-50%, -50%);
 }
 }
+

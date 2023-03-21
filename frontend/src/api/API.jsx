@@ -24,6 +24,30 @@ const tryCatchFetch = async (url) => {
   }
 }
 
+const tryPost = async (url, data) => {
+
+  const token = localStorage.getItem("token")
+  
+  const headers = {"Content-type": 'application/json'}
+  if (token) {
+    headers.Authorization = `Token ${token}`;
+  }
+
+  try {
+    const response = await fetch(url, {method: 'POST', body: JSON.stringify(data), headers})
+    if (response.ok) {
+      return await response.json()
+    }
+  else {
+      throw new Error(`Bad response: ${response.status} ${response.statusText}`)
+    }
+  }
+  catch (e) {
+    console.error(e)
+    return null
+}
+}
+
 //fetch all weeks
 const fetchWeeks = async () => {
   const url = BASE_URL
@@ -47,12 +71,21 @@ const fetchProfile = async () => {
   return await tryCatchFetch(url);
 }
 
+const fetchMuscleWorkout = async (muscle) => {
+  const url = BASE_URL + 'helper/'
+  console.log(muscle)
+  console.log("help")
+  const data = {"muscle": muscle}
+  return await tryPost(url, data);
+}
+
 
 const exportItems = {
   fetchWeeks,
   fetchProfiles,
   fetchProfileByID,
-  fetchProfile
+  fetchProfile,
+  fetchMuscleWorkout
 }
 
 export default exportItems

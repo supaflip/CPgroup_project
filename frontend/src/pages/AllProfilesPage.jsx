@@ -25,7 +25,7 @@ function AllProfilesPage() {
   // console.log("All Profiles", profiles); // delete when done testing
   
   console.log(localStorage.getItem('token'))
-  console.log(profiles)
+  console.log("Profiles", profiles)
 
   return (
     <div>
@@ -34,9 +34,6 @@ function AllProfilesPage() {
           path="/"
           element={
             <div>
-              <br></br>
-              <h2>Bar Path Program</h2>
-              <hr />
               <ProfileList profiles={profiles} />
             </div>
           }
