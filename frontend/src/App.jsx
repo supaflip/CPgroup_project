@@ -3,20 +3,18 @@ import 'react-bootstrap/dist/react-bootstrap.min.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import CreateProfilePage from './pages/CreateProfilePage.jsx'
-// import UpdateProfilePage from './pages/UpdateProfilePage.js'
 import SigninPage from './pages/SigninPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import AllProfilesPage from './pages/AllProfilesPage.jsx'
 import StartPage from './pages/StartPage.jsx'
 import Layout from './hocs/Layout';
-import AppNav from './components/AppNav';
-import { Provider } from 'react-redux';
 import MyProfilePage from './pages/MyProfilePage';
 import React from 'react';
+import TestPage from './pages/testPage';
 
 function App() {
   const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
-  //initial value should be 
+
   return (
     <div>
       <Router> 
@@ -29,6 +27,8 @@ function App() {
             <Route exact path="/create/" element={<CreateProfilePage />} />
             <Route exact path="/myprofile/" element={<MyProfilePage />} />
             <Route exact path="/profile/*" element={<AllProfilesPage />} />
+            <Route exact path="/test/" element={<TestPage />} />
+
           </Routes>
         </Layout>
       </Router>
