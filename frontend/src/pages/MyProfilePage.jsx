@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import API from "../api/API";
+import ModalProfileForm from "../components/ModalProfileForm";
 import UpdateProfileForm from "../components/UpdateProfileForm"
-
-
 
 function MyProfilePage() {
   const [profile, setProfile] = useState([]);  
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [select, setSelect] = useState("biceps");
+
+  const athlete = profile
 
   const handleButtonClick = () => {
     setShowUpdateForm(true)
@@ -28,13 +30,8 @@ function MyProfilePage() {
     getProfile();
   }, []);
 
-  // const params = useParams()
-
-  // console.log("All Profiles", profiles); // delete when done testing
-  
-  console.log(localStorage.getItem('token'))
-  console.log(profile)
-  let athlete = profile
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => setShowModal(true);
 
   return (
     <div>
@@ -52,8 +49,8 @@ function MyProfilePage() {
       <p>Back Squat: {athlete.weights === 1 ? `${athlete.max_backsquat} LB` : `${athlete.max_backsquat} KG`}</p>
     </div>
     <div>
-      <button className='btn btn-secondary btn-sm' onClick={handleButtonClick}>Update Profile</button>
-      {showUpdateForm && <UpdateProfileForm profile={athlete}/>}
+      <Button variant="primary" onClick={handleShowModal}>Update Profile</Button>
+      <ModalProfileForm showModal={showModal} setShowModal={setShowModal} profile={athlete} />
     </div>
     <br></br>
     <br></br>
