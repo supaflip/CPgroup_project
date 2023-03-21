@@ -10,7 +10,6 @@ import StartPage from './pages/StartPage.jsx'
 import Layout from './hocs/Layout';
 import MyProfilePage from './pages/MyProfilePage';
 import React from 'react';
-import TestPage from './pages/testPage';
 
 function App() {
   const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
@@ -27,8 +26,6 @@ function App() {
             <Route exact path="/create/" element={<CreateProfilePage />} />
             <Route exact path="/myprofile/" element={<MyProfilePage />} />
             <Route exact path="/profile/*" element={<AllProfilesPage />} />
-            <Route exact path="/test/" element={<TestPage />} />
-
           </Routes>
         </Layout>
       </Router>
