@@ -8,4 +8,5 @@ urlpatterns = [
     path('profiles/', views.ProfilesViewSet.as_view()), # retrieve all profiles
     path('profile/', views.ProfileViewSet.as_view()),
     path('profile/<int:id>/', views.ProfileViewSet.as_view()),
+    path('helper/', views.WorkoutHelper.as_view())
 ]
