@@ -41,8 +41,10 @@ const SigninPage = ({setLoggedin}) => {
       setRedirect(true);
       setLoggedin(true);
     } catch (err) {
+      console.log(err)
       console.error(err)
       setError('Invalid credentials')
+      alert('Invalid Credentials')
     }
   }
 
