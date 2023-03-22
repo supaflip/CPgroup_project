@@ -1,6 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
@@ -85,8 +86,9 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
             setErrors({});
             setSubmitted(true);
             alert("Profile has been updated");
+            window.location.reload(false)
           } catch (err) {
-            console.log(err.response, "made it2");
+            console.error(err);
           }
 
     }
