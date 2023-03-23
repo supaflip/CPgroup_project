@@ -3,18 +3,17 @@ import API from "../api/API";
 import { Routes, Route } from "react-router-dom";
 import ProfileList from "../components/ProfileList";
 // import ProfileForm from "../components/ProfileForm"
-import ProfilePage from './ProfilePage.jsx'
+import ProfilePage from "./ProfilePage.jsx";
 // import fetchProfileByID from '../api/WeekAPI'
 
-
 function AllProfilesPage() {
-  const [profiles, setProfiles] = useState([]);  
-  
+  const [profiles, setProfiles] = useState([]);
+
   useEffect(() => {
     const getProfiles = async () => {
       const data = await API.fetchProfiles();
       if (data) {
-        setProfiles(data.result);  
+        setProfiles(data.result);
       }
     };
     getProfiles();
@@ -22,10 +21,8 @@ function AllProfilesPage() {
 
   // const params = useParams()
 
-  // console.log("All Profiles", profiles); // delete when done testing
-  
-  console.log(localStorage.getItem('token'))
-  console.log("Profiles", profiles)
+  // console.log(localStorage.getItem("token")); // delete when done testing
+  // console.log("AllProfilesPage", profiles);
 
   return (
     <div>
@@ -40,7 +37,7 @@ function AllProfilesPage() {
         />
         <Route
           path="/:profileID/"
-          element={<ProfilePage profiles={profiles}/>}
+          element={<ProfilePage profiles={profiles} />}
         />
       </Routes>
     </div>

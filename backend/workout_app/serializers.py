@@ -34,6 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user       
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user_name = serializers.StringRelatedField(source='user', read_only=True)
     class Meta:
         model = Profile
         fields = '__all__'
