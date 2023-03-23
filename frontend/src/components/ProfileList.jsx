@@ -8,14 +8,12 @@ import SearchBar from "./SearchBar";
 function ProfileList(props) {
   const profileKeys = Object.keys(props.profiles);
   const [filteredProfiles, setFilteredProfiles] = useState(props.profiles);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedProfile, setExpandedProfile] = useState("");
 
   // this useEffect sets filteredProfiles to props.profiles when component is first rendered
   useEffect(() => {
     setFilteredProfiles(props.profiles);
   }, [props.profiles]);
-
-  console.log("Filtered Profiles", filteredProfiles) // delete when done testing
 
   const handleSearch = (searchTerm) => {
     if (!searchTerm) {
@@ -29,13 +27,13 @@ function ProfileList(props) {
         .includes(searchTerm.toLowerCase())
     );
 
-    const FilteredProfiles = {};
+    const filteredProfiles = {};
     filtered.forEach((key) => {
-      FilteredProfiles[key] = props.profiles[key];
+      filteredProfiles[key] = props.profiles[key];
     });
 
-    setFilteredProfiles(() => FilteredProfiles);
-    setIsExpanded(false);
+    setFilteredProfiles(() => filteredProfiles);
+    setExpandedProfile("");
   };
 
   const renderProfiles = () => {
@@ -49,7 +47,11 @@ function ProfileList(props) {
       const profile = filteredProfiles[key];
 
       const handleToggle = () => {
-        setIsExpanded(!isExpanded);
+        if (expandedProfile === key) {
+          setExpandedProfile("");
+        } else {
+          setExpandedProfile(key);
+        }
       };
 
       // "md={3}" means Col component takes up 3 out of 12 grid columns
@@ -63,10 +65,10 @@ function ProfileList(props) {
                 size="sm"
                 onClick={handleToggle}
               >
-                {isExpanded ? "Hide" : "Stats"}
+                {expandedProfile === key ? "Hide" : "Stats"}
               </Button>
             </Card.Header>
-            {isExpanded && (
+            {expandedProfile === key && (
               <div className="profile_breakdown">
                 <Card.Body>
                   <p>
