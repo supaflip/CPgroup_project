@@ -156,13 +156,13 @@ button:focus-visible {
 .navbar .ex2:hover {
   font-size: 102%;
   color: rgb(19, 0, 160) !important;
-  text-shadow: #242424;
   font-weight: bold;
+  border-bottom: 2px solid rgb(19, 0, 160);
+
 }
 
 .ex2:active{
   font-size: 95% !important;
-  background-color: #b7b3b3;
   opacity: 0.2;
 }
 
@@ -180,6 +180,13 @@ button:focus-visible {
   top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.profilecentered{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
 }
 }
 
