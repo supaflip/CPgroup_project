@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import API from "../api/API";
 import WeekList from "../components/WeekList";
-import Signout from "../components/Signout";
+// import Signout from "../components/Signout";
 // import { useParams } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import WeekPage from './WeekPage.jsx'
@@ -25,7 +25,7 @@ function HomePage() {
 
   // const params = useParams()
 
-  // console.log("Homepage", weeks); // delete when done testing
+  console.log("Homepage", weeks); // delete when done testing
   
  
   return (
