@@ -37,29 +37,36 @@ const SignupPage = ({setLoggedin}) => {
       };
       const res = await fetch('http://127.0.0.1:8000/accounts/signup/', config);
       const data = await res.json();
-      console.log(data);
+      console.log(data.username);
+      if (data.username == 'A user with that username already exists.') {
+        alert('A user with that username already exists.')
+      }
+
     } catch (err) {
       console.error(err);
+      
     }
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = JSON.stringify(user);
-      const res = await axios.post(
-        "http://127.0.0.1:8000/accounts/signin/",
-        body,
-        config
-      );
-      localStorage.setItem("token", res.data.token);
-      console.log(res.data); //  delete when done
-      setRedirect(true);
-      setLoggedin(true);
-    } catch (err) {
-      console.error(err)
-      setError('Invalid credentials')
+    if (data.username !== 'A user with that username already exists.') {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const body = JSON.stringify(user);
+        const res = await axios.post(
+          "http://127.0.0.1:8000/accounts/signin/",
+          body,
+          config
+        );
+        localStorage.setItem("token", res.data.token);
+        console.log(res.data); //  delete when done
+        setRedirect(true);
+        setLoggedin(true);
+      } catch (err) {
+        console.error(err)
+        setError('Invalid credentials')
+      }
     }
   }
 

@@ -3,11 +3,18 @@ import { Button } from "react-bootstrap";
 import API from "../api/API";
 import ModalProfileForm from "../components/ModalProfileForm";
 import UpdateProfileForm from "../components/UpdateProfileForm"
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 function MyProfilePage() {
   const [profile, setProfile] = useState([]);  
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [select, setSelect] = useState("biceps");
+  const [isExpanded, setIsExpanded] = useState(false);
+
+      const handleToggle = () => {
+        setIsExpanded(!isExpanded);
+      };
 
   const athlete = profile
 
@@ -33,24 +40,56 @@ function MyProfilePage() {
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = () => setShowModal(true);
 
+  // const params = useParams()
+
+  // console.log("All Profiles", profiles); // delete when done testing
+  
+  console.log(localStorage.getItem('token'))
+  console.log(profile)
+  let athlete = profile
+
   return (
     <div>
     <br></br>
     <h2>Bar Path Program</h2>
     <hr />
     <br></br>
-    <h4>Hello Athlete # { profile.id }!</h4>
-    <br></br>
-    <p>These are your current 1 rep maxes:</p>
-    <div className="profile_breakdown">
-      <p>Snatch: {athlete.weights === 1 ? `${athlete.max_snatch} LB` : `${athlete.max_snatch} KG`}</p>
-      <p>Clean & Jerk: {athlete.weights === 1 ? `${athlete.max_cleanjerk} LB` : `${athlete.max_cleanjerk} KG`}</p>
-      <p>Front Squat: {athlete.weights === 1 ? `${athlete.max_frontsquat} LB` : `${athlete.max_frontsquat} KG`}</p>
-      <p>Back Squat: {athlete.weights === 1 ? `${athlete.max_backsquat} LB` : `${athlete.max_backsquat} KG`}</p>
-    </div>
-    <div>
-      <Button variant="primary" onClick={handleShowModal}>Update Profile</Button>
-      <ModalProfileForm showModal={showModal} setShowModal={setShowModal} profile={athlete} />
+    <div className="profilecentered">
+      <Card style={{ width: '18rem' }}>
+        <Card.Header>
+          <Card.Title>Athlete # {profile.id}</Card.Title>
+        </Card.Header>
+          <div className="profile_breakdown">
+            <Card.Body>
+              <p>
+                Snatch:{" "}
+                {profile.weights === 1
+                  ? `${profile.max_snatch} LB`
+                  : `${profile.max_snatch} KG`}
+              </p>
+              <p>
+                C&J:{" "}
+                {profile.weights === 1
+                  ? `${profile.max_cleanjerk} LB`
+                  : `${profile.max_cleanjerk} KG`}
+              </p>
+              <p>
+                FS:{" "}
+                {profile.weights === 1
+                  ? `${profile.max_frontsquat} LB`
+                  : `${profile.max_frontsquat} KG`}
+              </p>
+              <p>
+                BS:{" "}
+                {profile.weights === 1
+                  ? `${profile.max_backsquat} LB`
+                  : `${profile.max_backsquat} KG`}
+              </p>
+            </Card.Body>
+            <Button variant="primary" onClick={handleShowModal}>Update Profile</Button>
+      <UpdateProfileForm showModal={showModal} setShowModal={setShowModal} profile={athlete} />
+          </div>
+      </Card>
     </div>
     <br></br>
     <br></br>
