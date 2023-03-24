@@ -104,7 +104,7 @@ const ModalProfileForm = ({ showModal, setShowModal, profile }) => {
         <>
         <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
             <Modal.Header closeButton>
-                <Modal.Title>Update MyProfile</Modal.Title>
+                <Modal.Title>Update My Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
