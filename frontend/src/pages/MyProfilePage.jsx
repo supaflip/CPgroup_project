@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import API from "../api/API";
 import ModalProfileForm from "../components/ModalProfileForm";
 import UpdateProfileForm from "../components/UpdateProfileForm"
@@ -46,7 +46,7 @@ function MyProfilePage() {
   
   console.log(localStorage.getItem('token'))
   console.log(profile)
-  let athlete = profile
+  // let athlete = profile
 
   return (
     <div>
