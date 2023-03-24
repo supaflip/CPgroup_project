@@ -11,6 +11,7 @@ function AppNav({loggedin}) {
     try {
       const token = localStorage.getItem('token');
       const config = {
+        method: 'POST',
         headers: {
           Authorization: `Token ${token}`
         }

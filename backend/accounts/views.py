@@ -9,6 +9,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class SignupView(CreateAPIView):
     queryset = User.objects.all()
@@ -35,11 +37,16 @@ class SigninView(APIView):
             return Response({"error": "Invalid credentials"}, status=400)
         
 class SignoutView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
     def post(self, request):
         try:
+            print('SIGNOUT RQUEST FROM : ', request.auth)
             token_key = request.auth.key
             token = Token.objects.get(key=token_key)
             token.delete()
             return Response({"detail": "Token deleted successfully."}, status=status.HTTP_200_OK)
         except Exception as e:
+            print('SIGNOUT REQUEST ERROR : ', e)
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
