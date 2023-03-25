@@ -1,31 +1,18 @@
 import { useState, useEffect } from "react";
-// import { Button } from "react-bootstrap";
 import API from "../api/API";
-import ModalProfileForm from "../components/ModalProfileForm";
 import UpdateProfileForm from "../components/UpdateProfileForm";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Navigate } from "react-router-dom";
 
-function MyProfilePage() {
+function MyProfilePage({loggedin}) {
+
+  /* DECLARATIONS OF STATE VARIABLES */
   const [profile, setProfile] = useState([]);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [select, setSelect] = useState("biceps");
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const athlete = profile;
-
-  const handleButtonClick = () => {
-    setShowUpdateForm(true);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    API.fetchMuscleWorkout(select);
-  };
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const getProfile = async () => {
@@ -37,19 +24,18 @@ function MyProfilePage() {
     getProfile();
   }, []);
 
-  const [showModal, setShowModal] = useState(false);
+  /* VARIABLES */
+  const athlete = profile;
+
+  /* FUNCTIONS */
   const handleShowModal = () => setShowModal(true);
 
-  // const params = useParams()
-
-  // console.log("All Profiles", profiles); // delete when done testing
-
-  console.log(localStorage.getItem("token"));
-  console.log(profile);
-  // let athlete = profile
+  // console.log(localStorage.getItem("token"));
+  // console.log(profile);
 
   return (
     <div>
+      {!loggedin && <Navigate to="/app" />}
       <br></br>
       <br></br>
       <br></br>
@@ -107,6 +93,20 @@ export default MyProfilePage;
 
 
 // NOT SURE WHERE THIS SHOULD BE
+
+// const handleButtonClick = () => {
+//   setShowUpdateForm(true);
+// };
+
+// const handleFormSubmit = (e) => {
+//   e.preventDefault();
+//   API.fetchMuscleWorkout(select);
+// };
+
+// const handleToggle = () => {
+//   setIsExpanded(!isExpanded);
+// };
+
 {/* <form>
 <select onChange={(e) => setSelect(e.target.value)}>
   <option value="biceps">biceps</option>
@@ -118,4 +118,5 @@ export default MyProfilePage;
   Search
 </button>
 </form> */}
+
 
