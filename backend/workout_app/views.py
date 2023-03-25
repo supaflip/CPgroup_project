@@ -7,6 +7,7 @@ from rest_framework.authentication import TokenAuthentication # permissions
 from rest_framework.permissions import IsAuthenticated, AllowAny #IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from .permissions import HasGroupMembership
 import logging
 import requests
 import random
@@ -21,6 +22,8 @@ logger = logging.getLogger(__name__)
 WORKOUT_API = 'https://api.api-ninjas.com/v1/exercises?muscle='
 
 class WeekViewSet(APIView):
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = (HasGroupMembership, )
     def get(self, request, week_number=None):
         if week_number: 
             data = Week.objects.get(week_number=week_number)
