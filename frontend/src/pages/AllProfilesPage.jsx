@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import API from "../api/API";
 import { Routes, Route } from "react-router-dom";
 import ProfileList from "../components/ProfileList";
-// import ProfileForm from "../components/ProfileForm"
 import ProfilePage from "./ProfilePage.jsx";
+import { Navigate } from "react-router-dom";
 // import fetchProfileByID from '../api/WeekAPI'
+// import ProfileForm from "../components/ProfileForm"
 
-function AllProfilesPage() {
+function AllProfilesPage({loggedin}) {
+
   const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
@@ -20,12 +22,12 @@ function AllProfilesPage() {
   }, []);
 
   // const params = useParams()
-
   // console.log(localStorage.getItem("token")); // delete when done testing
   // console.log("AllProfilesPage", profiles);
 
   return (
     <div>
+      {!loggedin && <Navigate to="/app" />}
       <Routes>
         <Route
           path="/"

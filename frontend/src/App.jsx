@@ -12,6 +12,7 @@ import MyProfilePage from './pages/MyProfilePage';
 import React from 'react';
 
 function App() {
+  
   const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
 
   return (
@@ -20,12 +21,12 @@ function App() {
         <Layout loggedin={loggedin} setLoggedin={setLoggedin}>
           <Routes>
             <Route exact path="/app" element={<StartPage />} />
-            <Route exact path="/workouts/*" element={<HomePage />} />
+            <Route exact path="/workouts/*" element={<HomePage loggedin={loggedin}/>} />
             <Route exact path="/signin/" element={<SigninPage setLoggedin={setLoggedin}/>} />
             <Route exact path="/signup/" element={<SignupPage setLoggedin={setLoggedin}/>} />
             <Route exact path="/create/" element={<CreateProfilePage />} />
-            <Route exact path="/myprofile/" element={<MyProfilePage />} />
-            <Route exact path="/profile/*" element={<AllProfilesPage />} />
+            <Route exact path="/myprofile/" element={<MyProfilePage loggedin={loggedin}/>} />
+            <Route exact path="/profile/*" element={<AllProfilesPage loggedin={loggedin}/>} />
           </Routes>
         </Layout>
       </Router>
