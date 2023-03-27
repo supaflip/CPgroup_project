@@ -3,10 +3,13 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.WeekViewSet.as_view()),
+    path('', views.WeekViewSet.as_view()), # retrieves all weeks
+    path('week/<str:week_number>/', views.WeekViewSet.as_view()), # retrieves specific week and the days and workouts in it
+    path('day/<str:day_number>/', views.DayViewSet.as_view()), # retrieves specific day and the workouts in it
+    path('workout/<int:id>/', views.WorkoutViewSet.as_view()), # retrieves specific workout
     path('users/', views.UserSignupView.as_view()), # retrieves all users
     path('profiles/', views.ProfilesViewSet.as_view()), # retrieve all profiles
-    path('profile/', views.ProfileViewSet.as_view()),
+    path('profile/', views.ProfileViewSet.as_view()), # retrieve profile of user whose token is used in get request
     path('profile/<int:id>/', views.ProfileViewSet.as_view()),
     path('helper/', views.WorkoutHelper.as_view())
 ]
