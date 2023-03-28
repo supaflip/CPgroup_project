@@ -12,9 +12,7 @@ const CreateProfileForm = () => {
     max_backsquat: "",
   });
 
-  const [profileData, setProfileData] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-
   const navigate = useNavigate();
 
   const {
@@ -42,7 +40,7 @@ const CreateProfileForm = () => {
       const userIndex = Math.max(
         ...response.data.result.map((item) => item.user)
       );
-
+      //console.log('USER IDX : ', userIndex);
       setFormData({
         ...formData,
         user: userIndex,
@@ -52,30 +50,8 @@ const CreateProfileForm = () => {
     }
   };
 
-  const fetchProfile = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      // const base_url = process.env.REACT_APP_BASE_URL;
-      const response = await axios.get(
-        `http://127.0.0.1:8000/workouts/profile/`,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
-      );
-      const user = response.data.result.find(
-        (object) => object === localStorage.getItem("object")
-      );
-      setProfileData(user.id);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     fetchUsers();
-    fetchProfile();
   }, []);
 
   const handleChange = (e) => {
@@ -105,10 +81,7 @@ const CreateProfileForm = () => {
         max_backsquat: "",
       });
 
-      // console.log("Handle Submit Response", response) // delete when done
-      // console.log("Response", response.data.user) // delete when done
       // console.log(response.data.id)
-
       alert("Profile has been created");
       setSubmitted(true);
       navigate("/workouts/");
@@ -117,7 +90,7 @@ const CreateProfileForm = () => {
     }
   };
 
-  console.log("Profile Data", profileData);
+  //console.log("Profile Data", profileData);
   if (submitted) {
     navigate("/workouts/");
   }
