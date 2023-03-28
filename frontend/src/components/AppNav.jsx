@@ -4,8 +4,9 @@ import { Navigate } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 import axios from "axios";
 
-function AppNav({loggedin, setLoggedin}) {
-  const [redirect, setRedirect] = useState(false);
+function AppNav({USER_AUTH, setUserAuth}) {
+  //const [redirect, setRedirect] = useState(false);
+  const redirect = false;
   const navigate = useNavigate();
 
   const handleSignout = async () => {
@@ -18,8 +19,9 @@ function AppNav({loggedin, setLoggedin}) {
         },
       };
       await axios.post('http://127.0.0.1:8000/accounts/signout/', null, config);
-      localStorage.removeItem('token');
-      setLoggedin(false);
+      //localStorage.removeItem('token');
+      localStorage.clear();
+      setUserAuth(null);
       navigate("/app")
       window.location.reload()
     } catch (err) {
@@ -52,10 +54,6 @@ function AppNav({loggedin, setLoggedin}) {
         </li>
         <br></br>
         <li className='nav-item active'>
-            <Nav.Link className='ex2' href='/profile/'>See All Profiles</Nav.Link>
-        </li>
-        <br></br>
-        <li className='nav-item active'>
             <Nav.Link className='ex2' href='https://blog.nasm.org/'>NASM Fitness Blog</Nav.Link>
         </li>
         <br></br>
@@ -63,6 +61,16 @@ function AppNav({loggedin, setLoggedin}) {
             <Nav.Link className='ex2'onClick={handleSignout} text="signout">Signout</Nav.Link>
         </li>
     </Fragment>
+);
+
+/* Additional Menus for coach group ONLY */ 
+const coachLinks = () => (
+  <Fragment>
+    <li className='nav-item active'>
+        <Nav.Link className='ex2' href='/profile/'>See All Profiles</Nav.Link>
+    </li>
+    <br></br>
+  </Fragment>
 );
 
   return (
@@ -78,7 +86,10 @@ function AppNav({loggedin, setLoggedin}) {
         </a>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">{loggedin ? authLinks() : guestLinks()}</Nav>
+          <Nav className="mr-auto">
+            {USER_AUTH['TOKEN'] ? authLinks() : guestLinks()}
+            {USER_AUTH['is_coach'] && coachLinks()}
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
       {redirect ? <Navigate to="/app" /> : <Fragment></Fragment>}

@@ -1,11 +1,12 @@
 from rest_framework import permissions
+from rest_framework import permissions
 
 class HasGroupMembership(permissions.BasePermission):
     
     def has_permission(self, request, view):
-        methods_list = ['GET', 'POST', 'PUT', 'DELETE' ]
+        methods_list = ['POST', 'PUT', 'DELETE',]
         if request.method not in methods_list:
-            return False
+            return True
         
         group_name = "Coach"
         if request.user.groups.filter(name__exact=group_name).exists():
