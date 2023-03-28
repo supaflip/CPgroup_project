@@ -25,9 +25,11 @@ function SearchBar({ onSearch }) {
         value={searchTerm}
         onChange={handleChange}
       />
+      <br></br>
       <Button variant="outline-success" type="submit">
         Search
       </Button>
+      <hr></hr>
     </Form>
   );
 }
