@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 // import fetchProfileByID from '../api/WeekAPI'
 // import ProfileForm from "../components/ProfileForm"
 
-function AllProfilesPage({loggedin}) {
+function AllProfilesPage({USER_AUTH}) {
 
   const [profiles, setProfiles] = useState([]);
 
@@ -27,7 +27,7 @@ function AllProfilesPage({loggedin}) {
 
   return (
     <div>
-      {!loggedin && <Navigate to="/app" />}
+      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
       <Routes>
         <Route
           path="/"

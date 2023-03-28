@@ -2,7 +2,6 @@ import './App.css';
 import 'react-bootstrap/dist/react-bootstrap.min.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
-import CreateProfilePage from './pages/CreateProfilePage.jsx'
 import SigninPage from './pages/SigninPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import AllProfilesPage from './pages/AllProfilesPage.jsx'
@@ -10,23 +9,27 @@ import StartPage from './pages/StartPage.jsx'
 import Layout from './hocs/Layout';
 import MyProfilePage from './pages/MyProfilePage';
 import React from 'react';
+import CreateProfileForm from './components/CreateProfileForm';
 
 function App() {
   
-  const [loggedin, setLoggedin] = React.useState(localStorage.getItem('token'));
+  const [USER_AUTH, setUserAuth] = React.useState({
+    'TOKEN' : localStorage.getItem('token'), 
+    'is_coach' : localStorage.getItem('is_coach')
+  });
 
   return (
     <div>
       <Router> 
-        <Layout loggedin={loggedin} setLoggedin={setLoggedin}>
+        <Layout USER_AUTH={USER_AUTH} setUserAuth={setUserAuth}>
           <Routes>
             <Route exact path="/app" element={<StartPage />} />
-            <Route exact path="/workouts/*" element={<HomePage loggedin={loggedin}/>} />
-            <Route exact path="/signin/" element={<SigninPage setLoggedin={setLoggedin}/>} />
-            <Route exact path="/signup/" element={<SignupPage setLoggedin={setLoggedin}/>} />
-            <Route exact path="/create/" element={<CreateProfilePage />} />
-            <Route exact path="/myprofile/" element={<MyProfilePage loggedin={loggedin}/>} />
-            <Route exact path="/profile/*" element={<AllProfilesPage loggedin={loggedin}/>} />
+            <Route exact path="/workouts/*" element={<HomePage USER_AUTH={USER_AUTH}/>} />
+            <Route exact path="/signin/" element={<SigninPage setUserAuth={setUserAuth}/>} />
+            <Route exact path="/signup/" element={<SignupPage setUserAuth={setUserAuth}/>} />
+            <Route exact path="/create/" element={<CreateProfileForm />} />
+            <Route exact path="/myprofile/" element={<MyProfilePage USER_AUTH={USER_AUTH}/>} />
+            <Route exact path="/profile/*" element={<AllProfilesPage USER_AUTH={USER_AUTH}/>} />
           </Routes>
         </Layout>
       </Router>

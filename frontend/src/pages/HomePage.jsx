@@ -4,9 +4,8 @@ import WeekList from "../components/WeekList";
 import { Routes, Route } from "react-router-dom";
 import WeekPage from './WeekPage.jsx'
 import { Navigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 
-function HomePage({loggedin}) {
+function HomePage({USER_AUTH}) {
   const [weeks, setWeeks] = useState([]);  // holds all week, day, and workout data in 1 file
   
   useEffect(() => {
@@ -19,13 +18,10 @@ function HomePage({loggedin}) {
     getWeeks();
   }, []);
 
-  // const params = useParams()
-  console.log("Homepage", weeks); // delete when done testing
   
-
   return (
     <div>
-      {!loggedin && <Navigate to="/app" />}
+      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
       <Routes>
         <Route
           path="/"

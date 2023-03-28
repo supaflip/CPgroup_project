@@ -45,11 +45,13 @@ class SigninView(APIView):
         password = request.data.get("password")
         user = authenticate(username=username, password=password)
         if user:
+            is_coach = user.groups.filter(name__exact="Coach").exists()
             token, _ = Token.objects.get_or_create(user=user)
-            return Response({"token": token.key}, status=200)
+            return Response({"token": token.key, "is_coach": is_coach}, status=200)
         else:
             return Response({"error": "Invalid credentials"}, status=400)
-        
+
+
 class SignoutView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

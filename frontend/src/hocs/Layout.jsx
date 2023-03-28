@@ -7,8 +7,8 @@ const Layout = (props) => {
 
   return (
     <div>
-      <AppNav loggedin={props.loggedin} setLoggedin={props.setLoggedin}/>
-      {console.log("loggedin: ", props.loggedin)}
+      <AppNav USER_AUTH={props.USER_AUTH} setUserAuth={props.setUserAuth}/>
+      {console.log("USER_AUTH (from layout) : ", props.USER_AUTH)}
       {props.children}
     </div>
   );
