@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-// import { Routes, Route } from "react-router-dom";
 import { Link, Navigate } from 'react-router-dom'
 
-const SigninPage = ({setLoggedin}) => {
+const SigninPage = ({setUserAuth}) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -11,7 +10,6 @@ const SigninPage = ({setLoggedin}) => {
 
   const { username, password } = formData;
   const [redirect, setRedirect] = useState(false);
-  const [error, setError] = useState(null);
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -37,13 +35,12 @@ const SigninPage = ({setLoggedin}) => {
         config
       );
       localStorage.setItem("token", res.data.token);
-      console.log(res.data); //  delete when done
+      localStorage.setItem("is_coach", res.data.is_coach);
       setRedirect(true);
-      setLoggedin(true);
+      setUserAuth({'TOKEN' : res.data.token, 'is_coach' : res.data.is_coach});
     } catch (err) {
       console.log(err)
       console.error(err)
-      setError('Invalid credentials')
       alert('Invalid Credentials')
     }
   }
@@ -94,34 +91,3 @@ const SigninPage = ({setLoggedin}) => {
 }
 
 export default SigninPage
-
-{/* <div>
-      <br></br>
-      <h2>Bar Path Program</h2>
-      <hr />
-      <br></br>
-      <h3>Please Sign In</h3>
-      {error && <p>{error}</p>} 
-      <br></br>
-      <form onSubmit={e => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={username}
-          onChange={e => onChange(e)}
-        />
-        <br></br>
-        <br></br>
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={e => onChange(e)}
-        />
-        <br></br>
-        <br></br>
-        <input type="submit" value="Signin" />
-      </form>
-    </div> */}

@@ -38,7 +38,9 @@ function ProfileList(props) {
 
   const handleProfileToggle = (id) => {
     if (expandedProfileIds.includes(id)) {
-      setExpandedProfileIds((prevIds) => prevIds.filter((prevId) => prevId !== id));
+      setExpandedProfileIds((prevIds) =>
+        prevIds.filter((prevId) => prevId !== id)
+      );
     } else {
       setExpandedProfileIds((prevIds) => [...prevIds, id]);
     }
@@ -48,7 +50,11 @@ function ProfileList(props) {
     const profileKeys = Object.keys(filteredProfiles);
 
     if (Object.keys(filteredProfiles).length === 0) {
-      return "No profile exists";
+      return (
+        <div className="alert alert-primary" role="alert">
+          No profile exists
+        </div>
+      );
     }
 
     return profileKeys.map((key) => {
@@ -113,17 +119,13 @@ function ProfileList(props) {
       <SearchBar onSearch={handleSearch} />
       <br />
       <div className="list-container">
-        <Row className="mb-3">
-          {renderProfiles()}
-        </Row>
+        <Row className="mb-3">{renderProfiles()}</Row>
       </div>
     </div>
   );
-  
 }
 
 export default ProfileList;
-
 
 // WORKING PROFILE LIST WITHOUT SEARCHBAR
 // import Card from "react-bootstrap/Card";

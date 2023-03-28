@@ -50,7 +50,8 @@ class SigninView(APIView):
             return Response({"token": token.key, "is_coach": is_coach}, status=200)
         else:
             return Response({"error": "Invalid credentials"}, status=400)
-        
+
+
 class SignoutView(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

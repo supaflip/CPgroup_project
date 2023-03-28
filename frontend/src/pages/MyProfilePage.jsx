@@ -5,13 +5,10 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Navigate } from "react-router-dom";
 
-function MyProfilePage({loggedin}) {
+function MyProfilePage({USER_AUTH}) {
 
   /* DECLARATIONS OF STATE VARIABLES */
   const [profile, setProfile] = useState([]);
-  const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [select, setSelect] = useState("biceps");
-  const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -30,12 +27,9 @@ function MyProfilePage({loggedin}) {
   /* FUNCTIONS */
   const handleShowModal = () => setShowModal(true);
 
-  // console.log(localStorage.getItem("token"));
-  // console.log(profile);
-
   return (
     <div>
-      {!loggedin && <Navigate to="/app" />}
+      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
       <br></br>
       <br></br>
       <br></br>
@@ -94,6 +88,10 @@ export default MyProfilePage;
 
 
 // NOT SURE WHERE THIS SHOULD BE
+
+// const [showUpdateForm, setShowUpdateForm] = useState(false);
+// const [select, setSelect] = useState("biceps");
+// const [isExpanded, setIsExpanded] = useState(false);
 
 // const handleButtonClick = () => {
 //   setShowUpdateForm(true);

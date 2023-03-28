@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 // import ProfileForm from "../components/ProfileForm"
 import axios from 'axios'
 
-const SignupPage = ({setLoggedin}) => {
+const SignupPage = ({setUserAuth}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -37,7 +37,7 @@ const SignupPage = ({setLoggedin}) => {
       };
       const res = await fetch('http://127.0.0.1:8000/accounts/signup/', config);
       const data = await res.json();
-      console.log(data.username);
+      //console.log(data.username);
       if (data.username == 'A user with that username already exists.') {
         alert('A user with that username already exists.')
       } else {
@@ -54,9 +54,10 @@ const SignupPage = ({setLoggedin}) => {
             config
           );
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("is_coach", res.data.is_coach);
+          setUserAuth({'TOKEN' : res.data.token, 'is_coach' : res.data.is_coach})
           console.log(res.data); //  delete when done
           setRedirect(true);
-          setLoggedin(true);
         } catch (err) {
           console.error(err)
           setError('Invalid credentials')
