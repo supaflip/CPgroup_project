@@ -44,7 +44,7 @@ function DayList (props) {
               >
                 <Modal.Header closeButton>
                   <Modal.Title>
-                    Day {day.day_number.slice(-1)} Workouts
+                    Day {day.day_number.slice(-1)} Week {day.day_number.slice(0,1)} Workouts
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
