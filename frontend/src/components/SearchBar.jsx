@@ -18,18 +18,18 @@ function SearchBar({ onSearch }) {
 
   return (
     <Form inline="true" onSubmit={handleSubmit}>
-      <FormControl
-        type="text"
-        placeholder="Search Profiles"
-        className="mr-sm-2"
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <br></br>
-      <Button variant="outline-success" type="submit">
-        Search
-      </Button>
-      <hr></hr>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <FormControl
+          type="text"
+          placeholder="Search Profiles"
+          className="mr-sm-2"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+        <Button variant="outline-success" type="submit">
+          Search
+        </Button>
+      </div>
     </Form>
   );
 }
