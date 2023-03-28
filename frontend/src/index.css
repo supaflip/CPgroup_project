@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  display: flex;
 }
 button:hover {
   border-color: #646cff;
@@ -54,7 +55,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 .modal {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
   border-radius: 6px;
   background-color: white;
   padding: 1rem;
@@ -142,6 +143,11 @@ button:focus-visible {
 .textalignleft {
   text-align: left;
 }
+
+.textaligncenter {
+  margin: auto;
+}
+
 .btnbtn-primary {
   font: inherit;
   padding: 0.5rem 1.5rem;

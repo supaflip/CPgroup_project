@@ -85,7 +85,6 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
             );
             setErrors({});
             setSubmitted(true);
-            alert("Profile has been updated");
             window.location.reload(false)
           } catch (err) {
             console.error(err);
@@ -105,7 +104,7 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
 
     return (
         <>
-        <Modal show={showModal} onHide={handleCloseModal} backdrop={false}>
+        <Modal className='backdrop' show={showModal} onHide={handleCloseModal} backdrop={false}>
             <Modal.Header closeButton>
                 <Modal.Title>Update My Profile</Modal.Title>
             </Modal.Header>
@@ -138,8 +137,9 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
-                <Button variant="primary" onClick={handleSubmit} type="submit">Save Changes</Button>
+            <div className="textaligncenter">
+            <Button variant="primary" onClick={handleSubmit} type="submit">Save Changes</Button> 
+            </div>
             </Modal.Footer>
         </Modal>
 

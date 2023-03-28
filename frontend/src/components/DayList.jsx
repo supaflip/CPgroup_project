@@ -37,14 +37,14 @@ function DayList (props) {
               DAY {day.day_number.slice(-1)}
             </Button>
             <p></p>
-            <Modal
+            <Modal className="backdrop"
               show={selectedWorkoutIndex === index}
               onHide={handleClose}
               backdrop={false}
               >
                 <Modal.Header closeButton>
                   <Modal.Title>
-                    Day {day.day_number.slice(-1)} Week {day.day_number.slice(0,1)} Workouts
+                    Day {day.day_number.slice(-1)}, Week {day.day_number.slice(0,1)} Workout
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

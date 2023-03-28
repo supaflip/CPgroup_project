@@ -35,6 +35,7 @@ function MyProfilePage({USER_AUTH}) {
       <br></br>
       <h2>Hello {profile.user_name}!</h2>
       <div className="profilecentered">
+      <br></br>
         <Card style={{ width: "18rem" }}>
           <Card.Header>
             <Card.Title>Current Stats</Card.Title>

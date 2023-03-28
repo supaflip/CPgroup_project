@@ -62,11 +62,11 @@ function ProfileList(props) {
 
       // "md={3}" means Col component takes up 3 out of 12 grid columns
       return (
-        <Col key={profile.id} md={3}>
+        <Col className="mb-4" key={profile.id} md={3}>
           <Card>
             <Card.Header>
               <Card.Title>{profile.user_name}</Card.Title>
-              <Button
+              <Button 
                 variant="outline-primary"
                 size="sm"
                 onClick={() => handleProfileToggle(profile.id)}
@@ -106,6 +106,7 @@ function ProfileList(props) {
             )}
           </Card>
         </Col>
+        
       );
     });
   };
