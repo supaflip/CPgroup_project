@@ -3,7 +3,7 @@ from rest_framework import permissions
 class HasGroupMembership(permissions.BasePermission):
     
     def has_permission(self, request, view):
-        methods_list = ['GET', ]
+        methods_list = ['GET', 'POST', 'PUT', 'DELETE' ]
         if request.method not in methods_list:
             return False
         

@@ -11,10 +11,10 @@ function WorkoutList(props) {
       <>
         {props.workouts.map((workout, index) => (
           <div key={index+1}>
-            Workout: {workout.title}<br/>
-            Notes: {workout.note}<br/>
-            <p>Perform {workout.sets} sets of {workout.reps} reps<br/>
-            at {workout.percentage}% of your 1 rep max.</p>
+            <b>{workout.title}</b>
+            {workout.note && <p style={{marginBottom: "0.1rem"}}>{workout.note}</p>}
+            {workout.sets && workout.reps && <p style={{marginBottom: "0.1rem"}}>Perform {workout.sets} sets of {workout.reps} reps</p>}
+            {workout.percentage && <p>at {workout.percentage}% of your 1 rep max.</p>}
           </div>
         ))}
       </>
