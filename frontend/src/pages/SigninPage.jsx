@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, BrowserRouter } from 'react-router-dom'
+import SignInErrorUI from '../components/SignInErrorUI'
+import { confirmAlert } from 'react-confirm-alert';
+
 
 const SigninPage = ({setUserAuth}) => {
   const [formData, setFormData] = useState({
@@ -14,6 +17,18 @@ const SigninPage = ({setUserAuth}) => {
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+  const handleUI = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <BrowserRouter>
+            <SignInErrorUI onClose={onClose}/>   
+          </BrowserRouter>       
+        );
+      }
+    });
+  };
 
   const onSubmit = async e => {
     e.preventDefault()
@@ -41,7 +56,7 @@ const SigninPage = ({setUserAuth}) => {
     } catch (err) {
       console.log(err)
       console.error(err)
-      alert('Invalid Credentials')
+      handleUI()
     }
   }
 

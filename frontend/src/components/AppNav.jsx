@@ -53,6 +53,7 @@ function AppNav({USER_AUTH, setUserAuth}) {
             <Nav.Link className='ex2' href='/myprofile/'>My Profile</Nav.Link>
         </li>
         <br></br>
+        {USER_AUTH['is_coach'] && coachLinks()}
         <li className='nav-item active'>
             <Nav.Link className='ex2' href='https://blog.nasm.org/'>NASM Fitness Blog</Nav.Link>
         </li>
@@ -88,7 +89,6 @@ const coachLinks = () => (
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {USER_AUTH['TOKEN'] ? authLinks() : guestLinks()}
-            {USER_AUTH['is_coach'] && coachLinks()}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

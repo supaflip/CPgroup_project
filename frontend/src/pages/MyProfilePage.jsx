@@ -49,19 +49,19 @@ function MyProfilePage({USER_AUTH}) {
                   : `${profile.max_snatch} KG`}
               </p>
               <p>
-                C&J:{" "}
+                Clean & Jerk:{" "}
                 {profile.weights === 1
                   ? `${profile.max_cleanjerk} LB`
                   : `${profile.max_cleanjerk} KG`}
               </p>
               <p>
-                FS:{" "}
+                Front Squat:{" "}
                 {profile.weights === 1
                   ? `${profile.max_frontsquat} LB`
                   : `${profile.max_frontsquat} KG`}
               </p>
               <p>
-                BS:{" "}
+                Back Squat:{" "}
                 {profile.weights === 1
                   ? `${profile.max_backsquat} LB`
                   : `${profile.max_backsquat} KG`}

@@ -114,7 +114,7 @@ button:focus-visible {
   background-color: #f8dae9;
 }
 .popup-overlay {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important; 
   border-radius: 6px;
   background-color: white;
   padding: 1rem;
