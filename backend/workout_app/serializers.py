@@ -42,3 +42,14 @@ class ProfileSerializer(serializers.ModelSerializer):
     def create_profile(self, validated_data):
         profile = Profile.objects.create_profile(**validated_data)
         return profile  
+    
+
+class CoachOnlyProfileSerializer(serializers.ModelSerializer):
+    user_name = serializers.StringRelatedField(source='user', read_only=True)
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+    def create_profile(self, validated_data):
+        profile = Profile.objects.create_profile(**validated_data)
+        return profile  
