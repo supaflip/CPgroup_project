@@ -4,8 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import ProfileList from "../components/ProfileList";
 import ProfilePage from "./ProfilePage.jsx";
 import { Navigate } from "react-router-dom";
-// import fetchProfileByID from '../api/WeekAPI'
-// import ProfileForm from "../components/ProfileForm"
 
 function AllProfilesPage({USER_AUTH}) {
 
@@ -21,13 +19,10 @@ function AllProfilesPage({USER_AUTH}) {
     getProfiles();
   }, []);
 
-  // const params = useParams()
-  // console.log(localStorage.getItem("token")); // delete when done testing
-  // console.log("AllProfilesPage", profiles);
 
   return (
     <div>
-      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
+      {(!USER_AUTH['TOKEN'] || !USER_AUTH['is_coach']) && <Navigate to="/app" />}
       <Routes>
         <Route
           path="/"
