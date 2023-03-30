@@ -16,7 +16,7 @@ function WeekList(props) {
         <Container>
         <Row>
         {Array.from(props.weeks).slice(0,5).map((week, index) => (
-          <Col key={index}>
+          <Col className="mb-4" key={index}>
           <Card eventkey={index}>
             <Card.Header>
               WEEK {week.week_number}
