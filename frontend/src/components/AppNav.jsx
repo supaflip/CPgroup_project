@@ -59,6 +59,10 @@ function AppNav({USER_AUTH, setUserAuth}) {
         </li>
         <br></br>
         <li className='nav-item active'>
+            <Nav.Link className='ex2' href='/workoutgenerator/'>Workout Generator</Nav.Link>
+        </li>
+        <br></br>
+        <li className='nav-item active'>
             <Nav.Link className='ex2'onClick={handleSignout} text="signout">Signout</Nav.Link>
         </li>
     </Fragment>

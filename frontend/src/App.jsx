@@ -10,6 +10,7 @@ import Layout from './hocs/Layout';
 import MyProfilePage from './pages/MyProfilePage';
 import React from 'react';
 import CreateProfileForm from './components/CreateProfileForm';
+import RandomWorkoutPage from './pages/RandomWorkoutPage';
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/create/" element={<CreateProfileForm />} />
             <Route exact path="/myprofile/" element={<MyProfilePage USER_AUTH={USER_AUTH}/>} />
             <Route exact path="/profile/*" element={<AllProfilesPage USER_AUTH={USER_AUTH}/>} />
+            <Route exact path="/workoutgenerator/" element={<RandomWorkoutPage />} />
           </Routes>
         </Layout>
       </Router>
