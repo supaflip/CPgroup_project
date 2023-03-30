@@ -27,7 +27,7 @@ function AllProfilesPage({USER_AUTH}) {
 
   return (
     <div>
-      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
+      {!USER_AUTH['TOKEN'] && !USER_AUTH['is_coach'] && <Navigate to="/app" />}
       <Routes>
         <Route
           path="/"
