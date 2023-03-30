@@ -12,10 +12,10 @@ import React from 'react';
 import CreateProfileForm from './components/CreateProfileForm';
 
 function App() {
-  
+
   const [USER_AUTH, setUserAuth] = React.useState({
     'TOKEN' : localStorage.getItem('token'), 
-    'is_coach' : localStorage.getItem('is_coach')
+    'is_coach' : localStorage.getItem('is_coach')==='true'
   });
 
   return (

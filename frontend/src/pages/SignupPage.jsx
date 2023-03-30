@@ -68,7 +68,7 @@ const SignupPage = ({setUserAuth}) => {
           );
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("is_coach", res.data.is_coach);
-          setUserAuth({ 'TOKEN': res.data.token, 'is_coach': res.data.is_coach })
+          setUserAuth({'TOKEN' : res.data.token, 'is_coach' : res.data.is_coach})
           console.log(res.data); //  delete when done
           setRedirect(true);
         } catch (err) {

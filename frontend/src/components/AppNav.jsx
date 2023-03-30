@@ -88,7 +88,7 @@ const coachLinks = () => (
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {USER_AUTH['TOKEN'] ? authLinks() : guestLinks()}
-            {USER_AUTH['is_coach'] == true && coachLinks()}
+            {USER_AUTH['is_coach'] && coachLinks()}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
