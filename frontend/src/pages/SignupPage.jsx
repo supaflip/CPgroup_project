@@ -1,7 +1,9 @@
 import React, { useState } from "react"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { BrowserRouter, Link, Navigate, useNavigate } from "react-router-dom"
 // import ProfileForm from "../components/ProfileForm"
 import axios from 'axios'
+import SignUpErrorUI from "../components/SignUpErrorUI";
+import { confirmAlert } from 'react-confirm-alert';
 
 const SignupPage = ({setUserAuth}) => {
 
@@ -16,12 +18,28 @@ const SignupPage = ({setUserAuth}) => {
    /* Variables */
    const { username, password } = formData;
 
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => setShowModal(true); 
+
+
   /* Form Handlers */
   const onChange = e => {
     setIsCoach(e.target.checked);
     setFormData({ ...formData, [e.target.name]: e.target.value });
     //console.log(e.target.value);
     //console.log(e.target.checked);
+  };
+
+  const handleUI= () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <BrowserRouter>
+            <SignUpErrorUI onClose={onClose}/>   
+          </BrowserRouter>       
+        );
+      }
+    });
   };
 
   const onSubmit = async e => {
@@ -52,7 +70,7 @@ const SignupPage = ({setUserAuth}) => {
       }
 
       if (data.username == 'A user with that username already exists.') {
-        alert('A user with that username already exists.')
+        handleUI()
       } else {
         try {
           const config = {
