@@ -81,13 +81,13 @@ const fetchMuscleWorkout = async (muscle) => {
 
 //fetch all profiles
 const fetchProfilesForCoachesOnly = async () => {
-  const url = BASE_URL + "profiles/"
+  const url = BASE_URL + "is_coach/profiles/"
   return await tryCatchFetch(url);
 }
 
 //fetch one profile
 const fetchProfileByIDForCoachesOnly = async (userID) => {
-  const url = BASE_URL + `profile/${userID}/`
+  const url = BASE_URL + `is_coach/profile/${userID}/`
   return await tryCatchFetch(url);
 }
 
@@ -100,7 +100,7 @@ const exportItems = {
   fetchProfileByID,
   fetchProfile,
   fetchMuscleWorkout,
-  fetchProfilesForCoachOnly,
+  fetchProfilesForCoachesOnly,
   fetchProfileByIDForCoachesOnly
 }
 
