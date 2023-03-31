@@ -74,7 +74,6 @@ const fetchProfile = async () => {
 const fetchMuscleWorkout = async (muscle) => {
   const url = BASE_URL + 'helper/'
   console.log(muscle)
-  console.log("help")
   const data = {"muscle": muscle}
   return await tryPost(url, data);
 }
