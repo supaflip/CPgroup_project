@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { BrowserRouter, Link, Navigate, useNavigate } from "react-router-dom"
-// import ProfileForm from "../components/ProfileForm"
+import { BrowserRouter, Link, Navigate } from "react-router-dom"
 import axios from 'axios'
 import SignUpErrorUI from "../components/SignUpErrorUI";
 import { confirmAlert } from 'react-confirm-alert';
@@ -17,10 +16,6 @@ const SignupPage = ({setUserAuth}) => {
 
    /* Variables */
    const { username, password } = formData;
-
-  const [showModal, setShowModal] = useState(false);
-  const handleShowModal = () => setShowModal(true); 
-
 
   /* Form Handlers */
   const onChange = e => {

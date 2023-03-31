@@ -55,7 +55,7 @@ const fetchWeeks = async () => {
 }
 
 //fetch all profiles
-const fetchProfiles = async () => {
+const fetchAllProfiles = async () => {
   const url = BASE_URL + "profiles/"
   return await tryCatchFetch(url);
 }
@@ -92,11 +92,9 @@ const fetchProfileByIDForCoachesOnly = async (userID) => {
 }
 
 
-
-
 const exportItems = {
   fetchWeeks,
-  fetchProfiles,
+  fetchAllProfiles,
   fetchProfileByID,
   fetchProfile,
   fetchMuscleWorkout,
