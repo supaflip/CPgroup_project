@@ -3,13 +3,15 @@ import API from "../api/API";
 import UpdateProfileForm from "../components/UpdateProfileForm";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function MyProfilePage({USER_AUTH}) {
-
+function MyProfilePage({ USER_AUTH }) {
   /* DECLARATIONS OF STATE VARIABLES */
   const [profile, setProfile] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProfile = async () => {
@@ -27,15 +29,40 @@ function MyProfilePage({USER_AUTH}) {
   /* FUNCTIONS */
   const handleShowModal = () => setShowModal(true);
 
+  console.log("Profile", profile.id)
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    if (window.confirm("Are you sure you want to delete your profile?")) {
+      const token = localStorage.getItem("token");
+      try {
+        await axios.delete(
+          "http://127.0.0.1:8000/workouts/profile/" + profile.id + "/",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+        alert("Profile has been deleted");
+        localStorage.removeItem("token");
+        setSubmitted(true);
+        navigate("/app/");
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+  };
+
   return (
     <div>
-      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
+      {!USER_AUTH["TOKEN"] && <Navigate to="/app" />}
       <br></br>
       <br></br>
       <br></br>
       <h2>Hello {profile.user_name}!</h2>
       <div className="profilecentered">
-      <br></br>
+        <br></br>
         <Card style={{ width: "18rem" }}>
           <Card.Header>
             <Card.Title>Current Stats</Card.Title>
@@ -77,6 +104,10 @@ function MyProfilePage({USER_AUTH}) {
             />
           </div>
         </Card>
+        <br></br>
+        <Button variant="danger" bsSize="small" onClick={handleDelete}>
+          Delete Profile
+        </Button>
       </div>
       <br></br>
       <br></br>
@@ -85,7 +116,6 @@ function MyProfilePage({USER_AUTH}) {
 }
 
 export default MyProfilePage;
-
 
 // NOT SURE WHERE THIS SHOULD BE
 
@@ -106,7 +136,8 @@ export default MyProfilePage;
 //   setIsExpanded(!isExpanded);
 // };
 
-{/* <form>
+{
+  /* <form>
 <select onChange={(e) => setSelect(e.target.value)}>
   <option value="biceps">biceps</option>
   <option value="chest">chest</option>
@@ -116,6 +147,93 @@ export default MyProfilePage;
 <button type="submit" onClick={handleFormSubmit}>
   Search
 </button>
-</form> */}
+</form> */
+}
 
+// import { useState, useEffect } from "react";
+// import API from "../api/API";
+// import UpdateProfileForm from "../components/UpdateProfileForm";
+// import Card from "react-bootstrap/Card";
+// import Button from "react-bootstrap/Button";
+// import { Navigate } from "react-router-dom";
 
+// function MyProfilePage({USER_AUTH}) {
+
+//   /* DECLARATIONS OF STATE VARIABLES */
+//   const [profile, setProfile] = useState([]);
+//   const [showModal, setShowModal] = useState(false);
+
+//   useEffect(() => {
+//     const getProfile = async () => {
+//       const data = await API.fetchProfile();
+//       if (data) {
+//         setProfile(data);
+//       }
+//     };
+//     getProfile();
+//   }, []);
+
+//   /* VARIABLES */
+//   const athlete = profile;
+
+//   /* FUNCTIONS */
+//   const handleShowModal = () => setShowModal(true);
+
+//   return (
+//     <div>
+//       {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
+//       <br></br>
+//       <br></br>
+//       <br></br>
+//       <h2>Hello {profile.user_name}!</h2>
+//       <div className="profilecentered">
+//       <br></br>
+//         <Card style={{ width: "18rem" }}>
+//           <Card.Header>
+//             <Card.Title>Current Stats</Card.Title>
+//           </Card.Header>
+//           <div className="profile_breakdown">
+//             <Card.Body>
+//               <p>
+//                 Snatch:{" "}
+//                 {profile.weights === 1
+//                   ? `${profile.max_snatch} LB`
+//                   : `${profile.max_snatch} KG`}
+//               </p>
+//               <p>
+//                 Clean & Jerk:{" "}
+//                 {profile.weights === 1
+//                   ? `${profile.max_cleanjerk} LB`
+//                   : `${profile.max_cleanjerk} KG`}
+//               </p>
+//               <p>
+//                 Front Squat:{" "}
+//                 {profile.weights === 1
+//                   ? `${profile.max_frontsquat} LB`
+//                   : `${profile.max_frontsquat} KG`}
+//               </p>
+//               <p>
+//                 Back Squat:{" "}
+//                 {profile.weights === 1
+//                   ? `${profile.max_backsquat} LB`
+//                   : `${profile.max_backsquat} KG`}
+//               </p>
+//             </Card.Body>
+//             <Button variant="primary" onClick={handleShowModal}>
+//               Update Profile
+//             </Button>
+//             <UpdateProfileForm
+//               showModal={showModal}
+//               setShowModal={setShowModal}
+//               profile={athlete}
+//             />
+//           </div>
+//         </Card>
+//       </div>
+//       <br></br>
+//       <br></br>
+//     </div>
+//   );
+// }
+
+// export default MyProfilePage;
