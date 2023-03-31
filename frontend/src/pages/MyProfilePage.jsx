@@ -105,7 +105,7 @@ function MyProfilePage({ USER_AUTH }) {
           </div>
         </Card>
         <br></br>
-        <Button variant="danger" bsSize="small" onClick={handleDelete}>
+        <Button variant="danger" onClick={handleDelete}>
           Delete Profile
         </Button>
       </div>
