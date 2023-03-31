@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import API from "../api/API";
-import UpdateProfileForm from "../components/UpdateProfileForm";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { Navigate } from "react-router-dom";
+import RandomWorkoutUI from "../components/RandomWorkoutUI";
+import { confirmAlert } from "react-confirm-alert";
+import { BrowserRouter } from "react-router-dom";
 
 function RandomWorkoutPage({USER_AUTH}) {
 
 
-const [select, setSelect] = useState("biceps");
+const [select, setSelect] = useState("Abdominals");
 const [isExpanded, setIsExpanded] = useState(false);
+const [randomWorkout, setRandomWorkout] = useState()
 
 const handleButtonClick = () => {
   setShowUpdateForm(true);
@@ -17,12 +17,29 @@ const handleButtonClick = () => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  API.fetchMuscleWorkout(select);
+  const getWorkout = async () => {
+    const data = await API.fetchMuscleWorkout(select);
+    if (data) {
+      setRandomWorkout(data)
+    }
+  };
+  getWorkout()
+  console.log(randomWorkout)
+  handleUI()
 };
 
-const handleToggle = () => {
-  setIsExpanded(!isExpanded);
+const handleUI= () => {
+  confirmAlert({
+    customUI: ({ onClose }) => {
+      return (
+        <BrowserRouter>
+          <RandomWorkoutUI randomWorkout={randomWorkout} onClose={onClose}/>   
+        </BrowserRouter>       
+      );
+    }
+  });
 };
+
   return (
     <div className='container'>
       <div className='jumbotron mt-5'>
@@ -31,9 +48,22 @@ const handleToggle = () => {
         <hr></hr>
         <p>Choose a muscle group below and click search</p>
         <select onChange={(e) => setSelect(e.target.value)}>
+          <option value="abdominals">Abdominals</option>
+          <option value="abductors">Abductors</option>
+          <option value="adductors">Adductors</option>
           <option value="biceps">Biceps</option>
+          <option value="calves">Calves</option>
           <option value="chest">Chest</option>
+          <option value="forearms">Forearms</option>
           <option value="glutes">Glutes</option>
+          <option value="hamstrings">Hamstrings</option>
+          <option value="lats">Lats</option>
+          <option value="lower_back">Lower back</option>
+          <option value="middle_back">Middle back</option>
+          <option value="neck">Neck</option>
+          <option value="quadriceps">Quadriceps</option>
+          <option value="traps">Traps</option>
+          <option value="triceps">Triceps</option>
         </select>
         <br></br>
         <br></br>
