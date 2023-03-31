@@ -22,11 +22,11 @@ function MyProfilePage({USER_AUTH}) {
 
     getMyProfile();
   },[]);
-
+  
   
   return(
     <div>
-      {!USER_AUTH['TOKEN'] && <Navigate to="/app" />}
+      {!USER_AUTH["TOKEN"] && <Navigate to="/app" />}
       <br></br>
       <br></br>
       <br></br>
@@ -41,5 +41,3 @@ function MyProfilePage({USER_AUTH}) {
 }
 
 export default MyProfilePage;
-
-

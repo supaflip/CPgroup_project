@@ -99,7 +99,7 @@ const SignupPage = ({setUserAuth}) => {
 
   return (
     <div className='container mt-5'>
-        <h1 className="textalignleft" >Sign Up</h1>
+        <h1 className="textalignleft">Sign Up</h1>
         <p className="textalignleft">Create your Bar Path Account</p>
         <form className="textalignleft" onSubmit={e => onSubmit(e)}>
             <div className='form-group'>
@@ -126,12 +126,12 @@ const SignupPage = ({setUserAuth}) => {
                 />
             </div>
             <div className="form-group">
+              <label>Are you a Coach?&nbsp;</label>
               <input
                   type='checkbox'
                   checked={isCoach}
                   onChange={e => onChange(e)}
               />
-              <label>coach</label>
             </div>
             <button className='btnbtn-primary' type='submit'>Register</button>
         </form>
