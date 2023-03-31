@@ -51,3 +51,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    def delete(self, *args, **kwargs):
+        user = self.user
+        super(Profile, self).delete(*args, **kwargs)
+        user.delete()
