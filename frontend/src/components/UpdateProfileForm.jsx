@@ -1,16 +1,16 @@
 import { Modal, Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 
 const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const handleCloseModal = () => setShowModal(false);
+  
     const token = localStorage.getItem("token");
     const BASE_URL = "http://127.0.0.1:8000/workouts";
 
     const [formData, setFormData] = useState({
-        user: "",
+        user: profile.user,
         weights: "",
         max_snatch: "",
         max_cleanjerk: "",
@@ -23,35 +23,16 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
-    const navigate = useNavigate();
-
-
     /* Get User's current profile*/
-    useEffect(() => {
-        const fetchProfile = async () => {
-          try {
-            const response = await axios.get(
-              BASE_URL + "/profile/",
-              {
-                headers: {
-                  Authorization: `Token ${token}`,
-                },
-              }
-            );
-            setFormData(response.data);
-          } catch (err) {
-            // console.log(err.response.data)
-          }
-        };
-        fetchProfile();
-      }, []);
+    useEffect(()=>{
+      setFormData(profile);
+    }, [profile, showModal])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const SUBMIT_URL = BASE_URL + "/profile/"+ profile.id + "/";
-        console.log('submit func');
-        console.log(SUBMIT_URL)
+        const SUBMIT_URL = BASE_URL + "/profile/"+ profile.user + "/";
+        
         /* Validation of input data */
         let errors = {};
         if (formData.max_snatch <= 0) {
@@ -95,10 +76,10 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            user: profile.id,
+            user: profile.user,
             [e.target.name]: e.target.value,
           });
-          console.log(formData, "DATA OF THE FORM IS NEWLY SET"); // delete when done, for testing only      
+          //console.log(formData, "DATA OF THE FORM IS NEWLY SET"); // delete when done, for testing only      
     }
 
 

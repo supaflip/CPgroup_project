@@ -201,11 +201,14 @@ class ProfileViewSet(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
-    def get(self, request): # id?
-        print("test")
-        print(request.auth.key)
-        user_id = Token.objects.get(key=request.auth.key).user_id
-        print(user_id)
+    def get(self, request, id=None): # id?
+        print("ProfileViewSet - GET  from", request.auth.key)
+        if id is None :
+            user_id = Token.objects.get(key=request.auth.key).user_id
+            print('BACKEND USER ID : ', user_id)
+        else :
+            user_id = id
+
         try: 
             data = Profile.objects.get(user_id=user_id)
             serializer = ProfileSerializer(data)
@@ -235,7 +238,7 @@ class ProfileViewSet(APIView):
 
     def put(self, request, id): # id?
         # user_id = request.user.id
-        profile = Profile.objects.get(id=id)
+        profile = Profile.objects.get(user=id)
         print(profile, 'this is the profile id in the put statement')
         request.data['user'] = profile.user.id
         serializer = ProfileSerializer(profile, data=request.data)
@@ -246,7 +249,7 @@ class ProfileViewSet(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
-        profile = Profile.objects.get(id=id)
+        profile = Profile.objects.get(user=id)
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

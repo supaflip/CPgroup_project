@@ -84,16 +84,15 @@ const CreateProfileForm = () => {
       // console.log(response.data.id)
       alert("Profile has been created");
       setSubmitted(true);
-      navigate("/workouts/");
+      navigate("/myprofile/");
     } catch (err) {
       console.log(err.response.data);
     }
   };
 
-  //console.log("Profile Data", profileData);
-  if (submitted) {
-    navigate("/workouts/");
-  }
+  // if (submitted) {
+  //   navigate("/workouts/");
+  // }
 
   return (
     <div className="container">
