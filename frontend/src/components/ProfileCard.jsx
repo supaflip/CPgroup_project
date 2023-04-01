@@ -31,12 +31,12 @@ function ProfileCard({profile}) {
       <Card style={{ width: "18rem" }}>
           <Card.Header>
             <Card.Title>{profile.user_name}</Card.Title>
-            <Button 
+            {(window.location.pathname === '/profile/') && <Button 
               variant="outline-primary"
               size="sm"
               onClick={() => handleStatsToggle()} >
                 {isExpanded ? "Hide" : "Stats"}
-            </Button>
+            </Button>}
           </Card.Header>
           {isExpanded && (
             <div className="profile_breakdown">
