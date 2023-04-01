@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import API from "../api/API";
 import { Navigate, useNavigate } from "react-router-dom";
-import ProfileCard from "../components/ProfileCard";
+import MyProfileCard from "../components/MyProfileCard";
 
 function MyProfilePage({USER_AUTH}) {
 
@@ -30,9 +30,9 @@ function MyProfilePage({USER_AUTH}) {
       <br></br>
       <br></br>
       <br></br>
-      <h2>Update MyProfile</h2>
+      <h2>My Bar Path Profile</h2>
         <div className="profilecentered">
-          <ProfileCard profile={myProfile} />
+          <MyProfileCard profile={myProfile} />
         </div>
       <br></br>
       <br></br>
