@@ -59,8 +59,8 @@ const handleUI = (data) => {
           <option value="glutes">Glutes</option>
           <option value="hamstrings">Hamstrings</option>
           <option value="lats">Lats</option>
-          <option value="lower_back">Lower back</option>
-          <option value="middle_back">Middle back</option>
+          <option value="lower_back">Lower Back</option>
+          <option value="middle_back">Middle Back</option>
           <option value="neck">Neck</option>
           <option value="quadriceps">Quadriceps</option>
           <option value="traps">Traps</option>
