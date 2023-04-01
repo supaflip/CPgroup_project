@@ -280,6 +280,7 @@ class WorkoutHelper(APIView):
         print(request.data)
         muscle = request.data['muscle']
         response = requests.get(f'{WORKOUT_API}{muscle}', headers={'X-Api-Key': WORKOUT_API_KEY})
+
         if response.status_code == requests.codes.ok:
             return Response(random.choice(response.json()))
         else:
