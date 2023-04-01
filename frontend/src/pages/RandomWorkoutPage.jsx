@@ -9,7 +9,7 @@ function RandomWorkoutPage({USER_AUTH}) {
 
 const [select, setSelect] = useState("Abdominals");
 const [isExpanded, setIsExpanded] = useState(false);
-const [randomWorkout, setRandomWorkout] = useState()
+
 
 const handleButtonClick = () => {
   setShowUpdateForm(true);
@@ -20,20 +20,21 @@ const handleFormSubmit = (e) => {
   const getWorkout = async () => {
     const data = await API.fetchMuscleWorkout(select);
     if (data) {
-      setRandomWorkout(data)
+      
+      handleUI(data)
     }
   };
   getWorkout()
-  console.log(randomWorkout)
-  handleUI()
+  
 };
 
-const handleUI= () => {
+
+const handleUI = (data) => {
   confirmAlert({
     customUI: ({ onClose }) => {
       return (
         <BrowserRouter>
-          <RandomWorkoutUI randomWorkout={randomWorkout} onClose={onClose}/>   
+          <RandomWorkoutUI randomWorkout={data} onClose={onClose}/>   
         </BrowserRouter>       
       );
     }
