@@ -1,13 +1,13 @@
 import UpdateProfileForm from "../components/UpdateProfileForm";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import DeleteProfile from "./DeleteProfile";
 
 function ProfileCard({profile}) {
   const [showModal, setShowModal] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(!(localStorage.getItem('is_coach') == 'true'));
+  const [isExpanded, setIsExpanded] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   /* FUNCTIONS */
@@ -18,6 +18,10 @@ function ProfileCard({profile}) {
     setIsExpanded(!isExpanded);
   };
 
+  useEffect(()=>{
+    if(window.location.pathname === '/myprofile/')
+      setIsExpanded(true)
+  }, []);
 
 
   return (
