@@ -1,20 +1,3 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-
-// const CreateDayForm = ({ week_number, handleClose }) => {
-  
-
-//   return (
-//     <h3>Test Form</h3>
-//   );
-// };
-
-// export default CreateDayForm;
-
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";

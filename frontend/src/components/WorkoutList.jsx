@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import UpdateWorkoutForm from "./UpdateWorkoutForm";
+import CreateWorkoutForm from "./CreateWorkoutForm";
 
 function WorkoutList(props) {
+  const [showCreateWorkoutModal, setShowCreateWorkoutModal] = useState(false);
   const [selectedWorkoutIndex, setSelectedWorkoutIndex] = useState(null);
   const [showUpdateWorkoutModal, setShowUpdateWorkoutModal] = useState(false);
+
+  const handleOpenCreateWorkoutModal = () => {
+    setShowCreateWorkoutModal(true);
+  };
+
+  const handleCloseCreateWorkoutModal = () => {
+    setShowCreateWorkoutModal(false);
+  };
 
   const handleUpdateWorkoutClick = (index) => {
     setSelectedWorkoutIndex(index);
@@ -67,6 +77,25 @@ function WorkoutList(props) {
 
   return (
     <div>
+      <Button
+        className="mb-2"
+        variant="outline-secondary"
+        size="sm"
+        onClick={handleOpenCreateWorkoutModal}
+      >
+        Create a new Workout
+      </Button>
+      <Modal
+        show={showCreateWorkoutModal}
+        onHide={handleCloseCreateWorkoutModal}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Create a new Workout</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CreateWorkoutForm handleClose={handleCloseCreateWorkoutModal} />
+        </Modal.Body>
+      </Modal>
       <div className="list-container">{renderWorkouts()}</div>
     </div>
   );

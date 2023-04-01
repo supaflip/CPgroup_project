@@ -1,11 +1,3 @@
-// import React, { useState } from "react";
-
-// const CreateWeekForm = ({ handleClose }) => {
-//   return <h3>Test Week Form</h3>;
-// };
-
-// export default CreateWeekForm;
-
 import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
