@@ -130,7 +130,7 @@ class WorkoutViewSet(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request, id=None):
+    def patch(self, request, id=None):
         if id:
             workout = Workout.objects.get(id=id)
             serializer = WorkoutSerializer(workout, data=request.data)
