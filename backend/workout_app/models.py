@@ -55,4 +55,4 @@ class Profile(models.Model):
     def delete(self, *args, **kwargs):
         user = self.user
         super(Profile, self).delete(*args, **kwargs)
-        user.delete()
+        #user.delete()      # commented this line to avoid delete user data from removing the profile (SJYun)

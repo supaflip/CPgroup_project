@@ -10,6 +10,8 @@ function ProfileCard({profile}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const srcPage = window.location.pathname;
+
   /* FUNCTIONS */
   const handleShowModal = () => setShowModal(true);
   const handleShowDeleteModal = () => setShowDeleteModal(true);
@@ -19,9 +21,9 @@ function ProfileCard({profile}) {
   };
 
   useEffect(()=>{
-    if(window.location.pathname === '/myprofile/')
+    if(srcPage === '/myprofile/')
       setIsExpanded(true)
-  }, []);
+  }, [srcPage]);
 
 
   return (

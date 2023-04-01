@@ -5,8 +5,6 @@ import { Nav, Navbar } from "react-bootstrap";
 import axios from "axios";
 
 function AppNav({USER_AUTH, setUserAuth}) {
-  //const [redirect, setRedirect] = useState(false);
-  const redirect = false;
   const navigate = useNavigate();
 
   const handleSignout = async () => {
@@ -19,13 +17,15 @@ function AppNav({USER_AUTH, setUserAuth}) {
         },
       };
       await axios.post('http://127.0.0.1:8000/accounts/signout/', null, config);
-      //localStorage.removeItem('token');
       localStorage.clear();
-      setUserAuth(null);
       navigate("/app")
       window.location.reload()
     } catch (err) {
       console.error(err);
+      localStorage.clear();
+      alert('Sign in again, please')
+      navigate("/signin")
+      window.location.reload()
     }
   };
 
@@ -96,7 +96,6 @@ const coachLinks = () => (
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {redirect ? <Navigate to="/app" /> : <Fragment></Fragment>}
     </div>
   );
 }
