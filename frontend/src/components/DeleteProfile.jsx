@@ -22,13 +22,14 @@ const DeleteProfile = ({ showModal, setShowModal, profile }) => {
             
             alert('The profile has been removed')
 
-            if (localStorage.getItem('is_coach') == 'true'){
-                navigate('/profile/');
+            if (window.location.pathname === '/myprofile/'){
+                window.location.reload();
+            } else if (window.location.pathname === '/profile/') {
                 window.location.reload();
             } else {
-                navigate('/myprofile/');
-                window.location.reload();
+                navigate('/app');
             }
+            
         } catch (error) {
             console.error(error); // Log any errors to the console
         }

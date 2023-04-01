@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 
 const CreateProfileForm = () => {
@@ -12,7 +12,6 @@ const CreateProfileForm = () => {
     max_backsquat: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -83,19 +82,15 @@ const CreateProfileForm = () => {
 
       // console.log(response.data.id)
       alert("Profile has been created");
-      setSubmitted(true);
       navigate("/myprofile/");
     } catch (err) {
       console.log(err.response.data);
     }
   };
 
-  // if (submitted) {
-  //   navigate("/workouts/");
-  // }
-
   return (
     <div className="container">
+      {!localStorage.getItem('token') && <Navigate to="/app" />}
       <h3>Create Your Profile</h3>
       <br></br>
       <form onSubmit={handleSubmit}>
