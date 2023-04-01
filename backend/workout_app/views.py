@@ -8,15 +8,15 @@ from rest_framework.permissions import IsAuthenticated, AllowAny #IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from .permissions import HasGroupMembership
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import logging
 import requests
 import random
 import os
 
-# load_dotenv()
+load_dotenv()
 
-# QUOTES_API_KEY = os.getenv("QUOTES_API_KEY")
+QUOTES_API_KEY = os.getenv("QUOTES_API_KEY")
 
 logger = logging.getLogger(__name__)
 
@@ -279,7 +279,7 @@ class WorkoutHelper(APIView):
     def post(self, request):
         print(request.data)
         muscle = request.data['muscle']
-        response = requests.get(f'{WORKOUT_API}{muscle}', headers={'X-Api-Key': 'e3JfPDyL5MirgfexAOhiRg==RyaHmyOhx5T8nKHc'})
+        response = requests.get(f'{WORKOUT_API}{muscle}', headers={'X-Api-Key': QUOTES_API_KEY})
         if response.status_code == requests.codes.ok:
             return Response(random.choice(response.json()))
         else:
