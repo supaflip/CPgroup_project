@@ -202,3 +202,8 @@ button:focus-visible {
 }
 }
 
+.modal-dialog-scrollable {
+  max-height: calc(100% - 1rem);
+  overflow-y: auto;
+}
+

@@ -15,7 +15,7 @@ function MyProfilePage({USER_AUTH}) {
       if(data) {
         setMyprofile(data);
       } else {
-        alert ('Please, create profile please.');
+        alert ('Please create a profile');
         navigate('/create');
       }
     };

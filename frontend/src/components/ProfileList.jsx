@@ -1,3 +1,4 @@
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
@@ -57,7 +58,6 @@ function ProfileList({ allProfiles }) {
         <Col className="mb-4" key={profile.id} md={3}>
           <ProfileCard profile={profile} />
         </Col>
-        
       );
     });
   };
@@ -68,7 +68,9 @@ function ProfileList({ allProfiles }) {
       <SearchBar onSearch={handleSearch} />
       <br />
       <div className="list-container">
-        <Row className="mb-3">{renderProfiles()}</Row>
+        <Container>
+          <Row className="mb-3">{renderProfiles()}</Row>
+        </Container>
       </div>
     </div>
   )

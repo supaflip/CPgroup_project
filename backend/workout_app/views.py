@@ -80,6 +80,7 @@ class DayViewSet(APIView):
         return Response({"result": serializer.data})
     
     def post(self, request):
+        print(request.data)
         serializer = DaySerializer(data=request.data)
         if serializer.is_valid():
             day = serializer.save()
