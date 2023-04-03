@@ -1,59 +1,108 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
-const CreateDayForm = ({ week_number, handleClose }) => {
-  const [formData, setFormData] = useState({
-    day_number: "",
-    week: week_number,
-  });
-
-  const handleChange = (e) => {
-    if (e.target.name === "day_number"){
-      setFormData({ ...formData, [e.target.name]: `${week_number}.${e.target.value}`, });
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    }  
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/workouts/days/",
-        formData,
-        {
-          headers: {
-            Authorization: "Token " + token,
-          },
-        }
-      );
-      alert("A new Day has been created");
-      handleClose();
-      window.location.reload();
-    } catch (err) {
-      console.log(err.response.data);
-    }
-  };
+const CreateDayForm = ({ days, weeks, dayFormData, handleChange }) => {
+  console.log("CreateDayForm", weeks, days)  // delete when done testing
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="day_number">
-        <Form.Label>Day Number:</Form.Label>
-        <Form.Control
-          type="text"
-          name="day_number"
-          value={formData.day_number}
-          onChange={handleChange}
-          placeholder="e.g. 1"
-          required
-        />
-      </Form.Group>
-      <Button className="mt-3" type="submit">Submit New Day</Button>
+    <Form>
+      <h5>Create a new Day</h5>
+      <Row>
+        <Col sm={4}>
+          <Form.Group controlId="week">
+            <Form.Control
+              as="select"
+              name="week"
+              value={dayFormData.week}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Week</option>
+              {weeks.map((week, index) => (
+                <option key={index} value={week.week_number}>
+                  Week {week.week_number}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Col>
+        <Col>    
+          <Form.Group controlId="day_number">
+            <Form.Control
+              type="text"
+              name="day_number"
+              value={dayFormData.day_number}
+              onChange={handleChange}
+              placeholder="Day Number (e.g., 2.1 for Week 2, Day 1)"
+              required
+            />
+          </Form.Group>
+        </Col>
+      </Row>
     </Form>
   );
 };
 
 export default CreateDayForm;
+
+
+// PREVIOUS CODE BEFORE SHIFTING SAVING OF DATA TO CREATEMODAL SAVE BUTTON
+// import React, { useState } from "react";
+// import axios from "axios";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
+
+// const CreateDayForm = ({ days, handleClose }) => {
+//   console.log("CreateDayForm", days)
+
+//   const [formData, setFormData] = useState({
+//     day_number: "",
+//     week: "",
+//   });
+
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const token = localStorage.getItem("token");
+//     try {
+//       const response = await axios.post(
+//         "http://127.0.0.1:8000/workouts/days/",
+//         formData,
+//         {
+//           headers: {
+//             Authorization: "Token " + token,
+//           },
+//         }
+//       );
+//       alert("A new Day has been created");
+//       handleClose();
+//       window.location.reload();
+//     } catch (err) {
+//       console.log(err.response.data);
+//     }
+//   };
+
+//   return (
+//     <Form onSubmit={handleSubmit}>
+//       <Form.Group controlId="day_number">
+//         <Form.Label>Day Number:</Form.Label>
+//         <Form.Control
+//           type="text"
+//           name="day_number"
+//           value={formData.day_number}
+//           onChange={handleChange}
+//           placeholder="e.g. 2.1 (Week 2, Day 1)"
+//           required
+//         />
+//       </Form.Group>
+//       <Button className="mt-3" type="submit">Submit New Day</Button>
+//     </Form>
+//   );
+// };
+
+// export default CreateDayForm;
