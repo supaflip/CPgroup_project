@@ -41,6 +41,8 @@ const CreateModal = ({ data, onClose }) => {
   const [weekFormData, setWeekFormData] = useState({ week_number: "" });
   const [dayFormData, setDayFormData] = useState({ week: "", day_number: "" });
   const [workoutFormData, setWorkoutFormData] = useState({
+    week: "",
+    day: "",
     title: "",
     note: "",
     sets: "",
@@ -59,7 +61,31 @@ const CreateModal = ({ data, onClose }) => {
     setWorkoutFormData({ ...workoutFormData, [e.target.name]: e.target.value });
   };
 
-  // submit each form independently
+  // Grabs day ID from the specific Day object matching the day_number
+  const getDayIdByDayNumber = async (dayNumber) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/workouts/day/${dayNumber}/`,
+        {
+          headers: {
+            Authorization: "Token " + token,
+          },
+        }
+      );
+      if (response.status === 200) {
+        return response.data.result.id;
+      } else {
+        console.error("Error fetching day data.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching day data:", error);
+      return null;
+    }
+  };
+
+  // If statements in the handleSubmit function so each form can be submitted independently with just one Save button
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -81,10 +107,15 @@ const CreateModal = ({ data, onClose }) => {
     }
 
     if (dayFormData.day_number) {
+      const dayDataWithWeekNumber = {
+        ...dayFormData,
+        day_number: `${dayFormData.week}.${dayFormData.day_number}`,
+      };
+
       try {
         const response = await axios.post(
           "http://127.0.0.1:8000/workouts/days/",
-          dayFormData,
+          dayDataWithWeekNumber,
           {
             headers: {
               Authorization: "Token " + token,
@@ -97,16 +128,36 @@ const CreateModal = ({ data, onClose }) => {
     }
 
     if (
-      workoutFormData.title ||
-      workoutFormData.note ||
-      workoutFormData.sets ||
-      workoutFormData.reps ||
-      workoutFormData.percentage
+      workoutFormData.week &&
+      workoutFormData.day &&
+      (workoutFormData.title ||
+        workoutFormData.note ||
+        workoutFormData.sets ||
+        workoutFormData.reps ||
+        workoutFormData.percentage)
     ) {
+      const dayId = await getDayIdByDayNumber(workoutFormData.day);
+
+      if (!dayId) {
+        console.error("Day ID not found for day number:", workoutFormData.day);
+        return;
+      }
+
+    //   // If the percentage field is an empty string, convert it to null (because in models.py, percentage is an integer)
+    // const workoutData = { ...workoutFormData };
+    // if (workoutData.percentage === "") {
+    //   workoutData.percentage = null;
+    // }
+      
+      const workoutDataWithDayId = {
+        ...workoutFormData,
+        day: dayId,
+      };
+
       try {
         const response = await axios.post(
           "http://127.0.0.1:8000/workouts/workout/",
-          workoutFormData,
+          workoutDataWithDayId,
           {
             headers: {
               Authorization: "Token " + token,
@@ -132,7 +183,9 @@ const CreateModal = ({ data, onClose }) => {
       style={{ zIndex: 1050 }}
     >
       <Modal.Header closeButton>
-        <Modal.Title className="text-center w-100">Add Information as Needed</Modal.Title>
+        <Modal.Title className="text-center w-100">
+          Add Information as Needed
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <CreateWeekForm
@@ -140,15 +193,17 @@ const CreateModal = ({ data, onClose }) => {
           weekFormData={weekFormData}
           handleChange={handleWeekChange}
         />
-        <hr/>
+        <hr />
         <CreateDayForm
           weeks={weeks}
           days={days}
           dayFormData={dayFormData}
           handleChange={handleDayChange}
         />
-        <hr/>
+        <hr />
         <CreateWorkoutForm
+          weeks={weeks}
+          days={days}
           workouts={workouts}
           workoutFormData={workoutFormData}
           handleChange={handleWorkoutChange}
@@ -158,7 +213,9 @@ const CreateModal = ({ data, onClose }) => {
         <Button variant="secondary" onClick={onClose}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleSubmit}>Save</Button>
+        <Button variant="primary" onClick={handleSubmit}>
+          Save
+        </Button>
       </Modal.Footer>
     </Modal>
   );

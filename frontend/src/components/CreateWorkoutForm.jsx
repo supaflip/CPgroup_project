@@ -1,16 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const CreateWorkoutForm = ({ workouts, workoutFormData, handleChange }) => {
-  console.log("CreateWorkoutForm", workouts) // delete when done testing
+const CreateWorkoutForm = ({
+  workouts,
+  weeks,
+  days,
+  workoutFormData,
+  handleChange,
+}) => {
+  console.log("CreateWorkoutForm", workouts); // delete when done testing
 
-  
+  // this useState will only allow the days from the selected week to show up in the drop down list
+  const [selectedWeek, setSelectedWeek] = useState("");
+
+  const handleWeekChange = (e) => {
+    setSelectedWeek(e.target.value);
+    handleChange(e);
+  };
 
   return (
     <Form>
       <h5>Create a new Workout</h5>
+      <Row className="mb-2">
+        <Col sm={3}>
+          <Form.Group controlId="week">
+            <Form.Control
+              as="select"
+              name="week"
+              value={workoutFormData.week}
+              onChange={handleWeekChange}
+              required
+            >
+              <option value="">Select Week</option>
+              {weeks.map((week, index) => (
+                <option key={index} value={week.week_number}>
+                  Week {week.week_number}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Col>
+        <Col sm={4}>
+          <Form.Group controlId="day">
+            <Form.Control
+              as="select"
+              name="day"
+              value={workoutFormData.day}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Day</option>
+              {days
+                .filter((day) => day.week_number === selectedWeek)
+                .map((day, index) => (
+                  <option key={index} value={day.day_number}>
+                    {`Day ${day.day_number.slice(2)}`}
+                  </option>
+                ))}
+            </Form.Control>
+          </Form.Group>
+        </Col>
+      </Row>
       <Row className="mb-2">
         <Form.Group controlId="title">
           <Form.Control
@@ -77,7 +129,6 @@ const CreateWorkoutForm = ({ workouts, workoutFormData, handleChange }) => {
 
 export default CreateWorkoutForm;
 
-
 // PREVIOUS CODE BEFORE SHIFTING SAVING OF DATA TO CREATEMODAL SAVE BUTTON
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
@@ -86,7 +137,7 @@ export default CreateWorkoutForm;
 
 // const CreateWorkoutForm = ({ workouts, handleClose }) => {
 //   console.log("CreateWorkoutForm", workouts)
-  
+
 //   const [formData, setFormData] = useState({
 //     title: "",
 //     note: "",

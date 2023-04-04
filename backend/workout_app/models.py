@@ -30,7 +30,7 @@ class Workout(models.Model):
     note = models.CharField(max_length=255, null=True, blank=True) # brief note or just general directive instead of numbers (e.g., 'to a heavy 2RM for the day')
     sets = models.CharField(max_length=2, null=True, blank=True) # 5, 12
     reps = models.CharField(max_length=10, null=True, blank=True) # 4, 3+2, 1+1+3
-    percentage = models.IntegerField(null=True, blank=True) # 65, 80, 105
+    percentage = models.CharField(max_length=4, null=True, blank=True) # 65, 80, 105
 
     class Meta:
         verbose_name = "workout"

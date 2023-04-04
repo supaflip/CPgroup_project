@@ -23,7 +23,7 @@ function AppNav({USER_AUTH, setUserAuth}) {
     } catch (err) {
       console.error(err);
       localStorage.clear();
-      alert('Sign in again, please')
+      alert('Please sign in again')
       navigate("/signin")
       window.location.reload()
     }

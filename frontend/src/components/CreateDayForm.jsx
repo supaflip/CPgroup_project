@@ -35,7 +35,7 @@ const CreateDayForm = ({ days, weeks, dayFormData, handleChange }) => {
               name="day_number"
               value={dayFormData.day_number}
               onChange={handleChange}
-              placeholder="Day Number (e.g., 2.1 for Week 2, Day 1)"
+              placeholder="Day Number (e.g., 1)"
               required
             />
           </Form.Group>
