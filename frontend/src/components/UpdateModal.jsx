@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
-import CreateWeekForm from "./CreateWeekForm";
-import CreateDayForm from "./CreateDayForm";
-import CreateWorkoutForm from "./CreateWorkoutForm";
+import UpdateWeekForm from "./UpdateWeekForm";
+import UpdateDayForm from "./UpdateDayForm";
+import UpdateWorkoutForm from "./UpdateWorkoutForm";
 import "../index.css";
 
-const CreateModal = ({ data, onClose }) => {
+const UpdateModal = ({ data, onClose }) => {
   // data holds all week, day, and workout objects in 1 file
   console.log(typeof onClose);
   // Extract weeks information from data
@@ -66,7 +66,7 @@ const CreateModal = ({ data, onClose }) => {
 
     if (weekFormData.week_number) {
       try {
-        const response = await axios.post(
+        const response = await axios.patch(
           "http://127.0.0.1:8000/workouts/",
           weekFormData,
           {
@@ -82,7 +82,7 @@ const CreateModal = ({ data, onClose }) => {
 
     if (dayFormData.day_number) {
       try {
-        const response = await axios.post(
+        const response = await axios.patch(
           "http://127.0.0.1:8000/workouts/days/",
           dayFormData,
           {
@@ -104,7 +104,7 @@ const CreateModal = ({ data, onClose }) => {
       workoutFormData.percentage
     ) {
       try {
-        const response = await axios.post(
+        const response = await axios.patch(
           "http://127.0.0.1:8000/workouts/workout/",
           workoutFormData,
           {
@@ -135,20 +135,20 @@ const CreateModal = ({ data, onClose }) => {
         <Modal.Title className="text-center w-100">Add Information as Needed</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <CreateWeekForm
+        <UpdateWeekForm
           weeks={weeks}
           weekFormData={weekFormData}
           handleChange={handleWeekChange}
         />
         <hr/>
-        <CreateDayForm
+        <UpdateDayForm
           weeks={weeks}
           days={days}
           dayFormData={dayFormData}
           handleChange={handleDayChange}
         />
         <hr/>
-        <CreateWorkoutForm
+        <UpdateWorkoutForm
           workouts={workouts}
           workoutFormData={workoutFormData}
           handleChange={handleWorkoutChange}
@@ -164,17 +164,17 @@ const CreateModal = ({ data, onClose }) => {
   );
 };
 
-export default CreateModal;
+export default UpdateModal;
 
 // PREVIOUS CODE BEFORE IMPLEMENTING SAVE FUNCTIONALITY
 // import React from "react";
 // import { Modal, Button } from "react-bootstrap";
-// import CreateWeekForm from "./CreateWeekForm";
-// import CreateDayForm from "./CreateDayForm";
-// import CreateWorkoutForm from "./CreateWorkoutForm";
+// import UpdateWeekForm from "./UpdateWeekForm";
+// import UpdateDayForm from "./UpdateDayForm";
+// import UpdateWorkoutForm from "./UpdateWorkoutForm";
 // import "../index.css";
 
-// const CreateModal = ({ data, onClose }) => {
+// const UpdateModal = ({ data, onClose }) => {
 
 //   // data holds all week, day, and workout objects in 1 file
 
@@ -209,12 +209,12 @@ export default CreateModal;
 //   return(
 //     <Modal show onHide={onClose} size="lg" backdrop={false} className="modal-dialog-scrollable" style={{ zIndex: 1050 }}>
 //       <Modal.Header closeButton>
-//         <Modal.Title>Create Stuff</Modal.Title>
+//         <Modal.Title>Update Stuff</Modal.Title>
 //       </Modal.Header>
 //       <Modal.Body>
-//         <CreateWeekForm weeks={weeks} />
-//         <CreateDayForm days={days}/>
-//         <CreateWorkoutForm workouts={workouts}/>
+//         <UpdateWeekForm weeks={weeks} />
+//         <UpdateDayForm days={days}/>
+//         <UpdateWorkoutForm workouts={workouts}/>
 //       </Modal.Body>
 //       <Modal.Footer>
 //         <Button variant="secondary" onClick={onClose}>
@@ -228,4 +228,4 @@ export default CreateModal;
 //   )
 // }
 
-// export default CreateModal;
+// export default UpdateModal;

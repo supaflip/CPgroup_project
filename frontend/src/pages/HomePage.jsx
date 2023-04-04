@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import WeekPage from "./WeekPage.jsx";
 import { Navigate } from "react-router-dom";
 import CreateModal from "../components/CreateModal";
+import UpdateModal from "../components/UpdateModal";
 import Button from "react-bootstrap/Button";
 
 function HomePage({ USER_AUTH }) {
@@ -30,11 +31,23 @@ function HomePage({ USER_AUTH }) {
     setShowCreateModal(false);
   };
 
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+
+  const handleOpenUpdateModal = () => {
+    setShowUpdateModal(true);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+  };
+
   return (
     <div>
       {!USER_AUTH["TOKEN"] && <Navigate to="/app" />}
       <Button className="mt-3" onClick={handleOpenCreateModal}>Create</Button>
       {showCreateModal && <CreateModal data={weeks} onClose={handleCloseCreateModal} />}
+      <Button className="mt-3" onClick={handleOpenUpdateModal}>Edit</Button>
+      {showUpdateModal && <UpdateModal data={weeks} onClose={handleCloseUpdateModal} />}
       <Routes>
         <Route
           path="/"
