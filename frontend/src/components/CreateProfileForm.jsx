@@ -28,7 +28,7 @@ const CreateProfileForm = () => {
     try {
       // const base_url = process.env.REACT_APP_BASE_URL;
       const response = await axios.get(
-        "http://127.0.0.1:8000/workouts/profile/",
+        "https://d3tr9iv1x8so5z.cloudfront.net/workouts/profile/",
         {
           headers: {
             Authorization: `Token ${token}`,
@@ -63,7 +63,7 @@ const CreateProfileForm = () => {
     try {
       // const base_url = process.env.REACT_APP_BASE_URL
       const response = await axios.post(
-        "http://127.0.0.1:8000/workouts/profile/",
+        "https://d3tr9iv1x8so5z.cloudfront.net/workouts/profile/",
         formData,
         {
           headers: {

@@ -60,7 +60,7 @@ const SignupPage = ({setUserAuth}) => {
         data = await res.json();
 
       } else {
-        res = await fetch('http://127.0.0.1:8000/accounts/signup/', config);
+        res = await fetch('https://d3tr9iv1x8so5z.cloudfront.net/accounts/signup/', config);
         data = await res.json();
       }
 
@@ -75,7 +75,7 @@ const SignupPage = ({setUserAuth}) => {
           };
           const body = JSON.stringify(user);
           const res = await axios.post(
-            "http://127.0.0.1:8000/accounts/signin/",
+            "https://d3tr9iv1x8so5z.cloudfront.net/accounts/signin/",
             body,
             config
           );

@@ -21,7 +21,7 @@ const CreateWorkoutForm = ({ handleClose }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/workouts/workout/",
+        "https://d3tr9iv1x8so5z.cloudfront.net/workouts/workout/",
         formData,
         {
           headers: {

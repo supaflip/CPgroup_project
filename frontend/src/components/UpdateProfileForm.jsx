@@ -7,7 +7,7 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const handleCloseModal = () => setShowModal(false);
   
     const token = localStorage.getItem("token");
-    const BASE_URL = "http://127.0.0.1:8000/workouts";
+    const BASE_URL = "https://d3tr9iv1x8so5z.cloudfront.net/workouts";
 
     const [formData, setFormData] = useState({
         user: profile.user,

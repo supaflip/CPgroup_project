@@ -11,9 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i%o&*5t!)*axv9r24&yu@50gtl&&6#80j&@q8lpkf0hqlp71b)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -50,14 +50,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5174",
-    "http://localhost:5174",
-    "http://127.0.0.1:5173",
-    "http://localhost:5173",
-    # "http://192.168.1.31:3000",
-    # "http://localhost:3000",
-]
+CORS_ALLOW_ALL_ORIGINS=True
+#CORS_ALLOWED_ORIGINS = [
+#    "http://127.0.0.1:5174",
+#    "http://localhost:5174",
+#    "http://127.0.0.1:5173",
+#    "http://localhost:5173",
+#    "https://d3r87siz5pyy4m.cloudfront.net:8800",
+#    "https://d3r87siz5pyy4m.cloudfront.net",
+#    "http://workout-app-2077149501.us-east-1.elb.amazonaws.com",
+#    "https://workout-app-2077149501.us-east-1.elb.amazonaws.com"
+#
+#    # "http://192.168.1.31:3000",
+#    # "http://localhost:3000",
+#]
 
 ROOT_URLCONF = 'workout_tracker.urls'
 

@@ -16,7 +16,7 @@ function AppNav({USER_AUTH, setUserAuth}) {
           Authorization: `Token ${token}`,
         },
       };
-      await axios.post('http://127.0.0.1:8000/accounts/signout/', null, config);
+      await axios.post('https://d3tr9iv1x8so5z.cloudfront.net/accounts/signout/', null, config);
       localStorage.clear();
       navigate("/app")
       window.location.reload()
