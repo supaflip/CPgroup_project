@@ -2,6 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Button } from 'react-bootstrap';
 
 function RandomWorkoutUI(props) {
   console.log(props.randomWorkout.name)
@@ -64,7 +65,7 @@ function RandomWorkoutUI(props) {
       </Row>
       </Container>
       <br></br>
-      <button className="btn" onClick={props.onClose}>Okay</button>
+      <Button variant="primary" onClick={props.onClose}>Okay</Button>
     </div>
     </div>
   );

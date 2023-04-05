@@ -190,13 +190,6 @@ button:focus-visible {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.profilecentered{
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-}
 .fontsize10{
   font-size: smaller !important;
 }

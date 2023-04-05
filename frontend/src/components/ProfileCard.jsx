@@ -1,6 +1,6 @@
 import UpdateProfileForm from "../components/UpdateProfileForm";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import DeleteProfile from "./DeleteProfile";
@@ -68,7 +68,7 @@ function ProfileCard({profile}) {
             </Card.Body>
             <Card.Footer>
               <ButtonGroup size="sm">
-                <Button variant="info" onClick={handleShowModal}>Update</Button>
+                <Button variant="primary" onClick={handleShowModal}>Update</Button>
                 <Button variant="danger" onClick={handleShowDeleteModal}>Delete</Button>
               </ButtonGroup>
 
