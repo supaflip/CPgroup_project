@@ -143,12 +143,6 @@ const CreateModal = ({ data, onClose }) => {
         return;
       }
 
-    //   // If the percentage field is an empty string, convert it to null (because in models.py, percentage is an integer)
-    // const workoutData = { ...workoutFormData };
-    // if (workoutData.percentage === "") {
-    //   workoutData.percentage = null;
-    // }
-      
       const workoutDataWithDayId = {
         ...workoutFormData,
         day: dayId,
@@ -179,7 +173,7 @@ const CreateModal = ({ data, onClose }) => {
       onHide={onClose}
       size="lg"
       backdrop={false}
-      className="modal-dialog-scrollable"
+      className="backdrop"
       style={{ zIndex: 1050 }}
     >
       <Modal.Header closeButton>
