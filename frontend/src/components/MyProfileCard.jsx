@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import DeleteProfile from "./DeleteProfile";
+import { Container } from "react-bootstrap";
 
 function MyProfileCard({profile}) {
   const [showModal, setShowModal] = useState(false);
@@ -22,12 +23,14 @@ function MyProfileCard({profile}) {
 
 
   return (
+    <Container >
     <div>
-      <Card style={{ width: "18rem" }}>
+      
+      <Card className="mx-auto" style={{ width: "18rem" }}>
           <Card.Header>
             <Card.Title>{profile.user_name}</Card.Title>
           </Card.Header>
-            <div className="profile_breakdown">
+            <div>
             <Card.Body>
               <p>
                 Snatch:{" "}
@@ -56,8 +59,8 @@ function MyProfileCard({profile}) {
             </Card.Body>
             <Card.Footer>
               <ButtonGroup size="sm">
-                <Button variant="info" onClick={handleShowModal}>Update</Button>
-                <Button variant="danger" onClick={handleShowDeleteModal}>Delete</Button>
+                <Button variant="primary" onClick={handleShowModal}>Update</Button>
+                <button className="btn btn-outline-danger" variant="danger" onClick={handleShowDeleteModal}>Delete</button>
               </ButtonGroup>
 
               <UpdateProfileForm
@@ -73,7 +76,9 @@ function MyProfileCard({profile}) {
             </Card.Footer>
             </div>
         </Card>
+        
     </div>
+    </Container>
   );
 }
 

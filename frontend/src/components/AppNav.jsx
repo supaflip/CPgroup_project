@@ -80,7 +80,7 @@ const coachLinks = () => (
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="md">
         <a className="navbar-brand">
           <img
             src="https://cdn.shopify.com/s/files/1/2534/2440/products/istockphoto-1203011520-612x612_b31d7ede-8f0f-4e7f-8dff-ac75febcfc4f_480x480.jpg?v=1657655237"

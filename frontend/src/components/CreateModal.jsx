@@ -179,7 +179,7 @@ const CreateModal = ({ data, onClose }) => {
       onHide={onClose}
       size="lg"
       backdrop={false}
-      className="modal-dialog-scrollable"
+      className="backdrop"
       style={{ zIndex: 1050 }}
     >
       <Modal.Header closeButton>
