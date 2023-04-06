@@ -64,8 +64,8 @@ function ProfileList({ allProfiles }) {
 
   return(
     <div>
-      <h3>All Profiles</h3>
       <SearchBar onSearch={handleSearch} />
+      <div><h3>All Profiles</h3></div>
       <br />
       <div className="list-container">
         <Container>
