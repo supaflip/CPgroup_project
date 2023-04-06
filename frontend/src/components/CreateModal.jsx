@@ -91,9 +91,17 @@ const CreateModal = ({ data, onClose }) => {
     const token = localStorage.getItem("token");
 
     if (weekFormData.week_number) {
+      const weekExists = weeks.some(
+        (week) => week.week_number === weekFormData.week_number
+      );
+      // prevents duplicate Week numbers
+      if (weekExists) {
+        alert("That Week already exists.");
+        return;
+      }
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/",
+          `http://127.0.0.1:8000/workouts/`,
           weekFormData,
           {
             headers: {
@@ -107,6 +115,17 @@ const CreateModal = ({ data, onClose }) => {
     }
 
     if (dayFormData.day_number) {
+      const dayExists = days.some(
+        (day) =>
+          day.week_number === dayFormData.week &&
+          day.day_number === `${dayFormData.week}.${dayFormData.day_number}`
+      );
+      // prevents duplicate Days in the selected Week
+      if (dayExists) {
+        alert(`That Day already exists in Week ${dayFormData.week}.`);
+        return;
+      }
+
       const dayDataWithWeekNumber = {
         ...dayFormData,
         day_number: `${dayFormData.week}.${dayFormData.day_number}`,
@@ -114,7 +133,7 @@ const CreateModal = ({ data, onClose }) => {
 
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/days/",
+          `http://127.0.0.1:8000/workouts/days/`,
           dayDataWithWeekNumber,
           {
             headers: {
@@ -150,7 +169,7 @@ const CreateModal = ({ data, onClose }) => {
 
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/workout/",
+          `http://127.0.0.1:8000/workouts/workout/`,
           workoutDataWithDayId,
           {
             headers: {
