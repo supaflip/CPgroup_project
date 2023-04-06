@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from workout_app.models import Profile
 
 class CoachSignupView(CreateAPIView):
     queryset = User.objects.all()
@@ -31,7 +32,8 @@ class SignupView(CreateAPIView):
         if serializer.is_valid():
             username = serializer.validated_data["username"]
             password = serializer.validated_data["password"]
-            User.objects.create_user(username=username, password=password)
+            user = User.objects.create_user(username=username, password=password)
+            Profile.objects.create(user=user)           # When User sign-up, their profiles would be created together with default values(0)
 
 class SigninView(APIView):
     permission_classes = (AllowAny,)

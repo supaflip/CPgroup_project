@@ -28,14 +28,14 @@ const CreateProfileForm = () => {
     try {
       // const base_url = process.env.REACT_APP_BASE_URL;
       const response = await axios.get(
-        "http://127.0.0.1:8000/workouts/profile/",
+        "http://localhost:8000/workouts/profile/",
         {
           headers: {
             Authorization: `Token ${token}`,
           },
         }
       );
-
+      console.log('PROFILE RESPONSE : ', response.data);
       const userIndex = Math.max(
         ...response.data.result.map((item) => item.user)
       );
@@ -63,7 +63,7 @@ const CreateProfileForm = () => {
     try {
       // const base_url = process.env.REACT_APP_BASE_URL
       const response = await axios.post(
-        "http://127.0.0.1:8000/workouts/profile/",
+        "http://localhost:8000/workouts/profile/",
         formData,
         {
           headers: {

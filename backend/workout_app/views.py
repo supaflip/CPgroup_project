@@ -193,6 +193,7 @@ class ProfileViewSet(APIView):
     
         
     def post(self, request):
+        print('######## PROFILE VIEW POST : ', request.data)
         logger.debug('post method called') # add this line to ensure the view is being called
         data = request.data
         data["user"] = request.user.id
