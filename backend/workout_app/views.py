@@ -58,6 +58,7 @@ class WeekViewSet(APIView):
             return Response({"error": "Week number not provided"}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, week_number=None):
+        print(f"Deleting week number: {week_number}")
         if week_number:
             week = Week.objects.get(week_number=week_number)
             week.delete()

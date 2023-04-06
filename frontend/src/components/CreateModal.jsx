@@ -91,9 +91,17 @@ const CreateModal = ({ data, onClose }) => {
     const token = localStorage.getItem("token");
 
     if (weekFormData.week_number) {
+      const weekExists = weeks.some(
+        (week) => week.week_number === weekFormData.week_number
+      );
+      // prevents duplicate Week numbers
+      if (weekExists) {
+        alert("That Week already exists.");
+        return;
+      }
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/",
+          `http://127.0.0.1:8000/workouts/`,
           weekFormData,
           {
             headers: {
@@ -107,6 +115,17 @@ const CreateModal = ({ data, onClose }) => {
     }
 
     if (dayFormData.day_number) {
+      const dayExists = days.some(
+        (day) =>
+          day.week_number === dayFormData.week &&
+          day.day_number === `${dayFormData.week}.${dayFormData.day_number}`
+      );
+      // prevents duplicate Days in the selected Week
+      if (dayExists) {
+        alert(`That Day already exists in Week ${dayFormData.week}.`);
+        return;
+      }
+
       const dayDataWithWeekNumber = {
         ...dayFormData,
         day_number: `${dayFormData.week}.${dayFormData.day_number}`,
@@ -114,7 +133,7 @@ const CreateModal = ({ data, onClose }) => {
 
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/days/",
+          `http://127.0.0.1:8000/workouts/days/`,
           dayDataWithWeekNumber,
           {
             headers: {
@@ -143,12 +162,6 @@ const CreateModal = ({ data, onClose }) => {
         return;
       }
 
-    //   // If the percentage field is an empty string, convert it to null (because in models.py, percentage is an integer)
-    // const workoutData = { ...workoutFormData };
-    // if (workoutData.percentage === "") {
-    //   workoutData.percentage = null;
-    // }
-      
       const workoutDataWithDayId = {
         ...workoutFormData,
         day: dayId,
@@ -156,7 +169,7 @@ const CreateModal = ({ data, onClose }) => {
 
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8000/workouts/workout/",
+          `http://127.0.0.1:8000/workouts/workout/`,
           workoutDataWithDayId,
           {
             headers: {
@@ -222,67 +235,3 @@ const CreateModal = ({ data, onClose }) => {
 };
 
 export default CreateModal;
-
-// PREVIOUS CODE BEFORE IMPLEMENTING SAVE FUNCTIONALITY
-// import React from "react";
-// import { Modal, Button } from "react-bootstrap";
-// import CreateWeekForm from "./CreateWeekForm";
-// import CreateDayForm from "./CreateDayForm";
-// import CreateWorkoutForm from "./CreateWorkoutForm";
-// import "../index.css";
-
-// const CreateModal = ({ data, onClose }) => {
-
-//   // data holds all week, day, and workout objects in 1 file
-
-//   // Extract weeks information from data
-//   const weeks = data.map(item => ({
-//     week_number: item.week_number,
-//   }));
-
-//   // Extract days information from data
-//   const days = data.flatMap(item =>
-//     item.days.map(day => ({
-//       week_number: item.week_number,
-//       day_number: day.day_number,
-//     }))
-//   );
-
-//   // Extrace workouts information from data
-//   const workouts = data.flatMap(item =>
-//     item.days.flatMap(day =>
-//       day.workouts.map(workout => ({
-//         week_number: item.week_number,
-//         day_number: day.day_number,
-//         title: workout.title,
-//         note: workout.note,
-//         sets: workout.sets,
-//         reps: workout.reps,
-//         percentage: workout.percentage,
-//       }))
-//     )
-//   );
-
-//   return(
-//     <Modal show onHide={onClose} size="lg" backdrop={false} className="modal-dialog-scrollable" style={{ zIndex: 1050 }}>
-//       <Modal.Header closeButton>
-//         <Modal.Title>Create Stuff</Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body>
-//         <CreateWeekForm weeks={weeks} />
-//         <CreateDayForm days={days}/>
-//         <CreateWorkoutForm workouts={workouts}/>
-//       </Modal.Body>
-//       <Modal.Footer>
-//         <Button variant="secondary" onClick={onClose}>
-//           Cancel
-//         </Button>
-//         <Button variant="primary">
-//           Save
-//         </Button>
-//       </Modal.Footer>
-//     </Modal>
-//   )
-// }
-
-// export default CreateModal;
