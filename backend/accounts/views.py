@@ -33,6 +33,7 @@ class SignupView(CreateAPIView):
             username = serializer.validated_data["username"]
             password = serializer.validated_data["password"]
             user = User.objects.create_user(username=username, password=password)
+            user.groups.add(Group.objects.get(name='Client'))
             Profile.objects.create(user=user)           # When User sign-up, their profiles would be created together with default values(0)
 
 class SigninView(APIView):

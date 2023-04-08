@@ -195,8 +195,14 @@ button:focus-visible {
 }
 }
 
-.modal-dialog-scrollable {
-  max-height: calc(100% - 1rem);
-  overflow-y: auto;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.grid-item {
+  width: 200px;
 }
 

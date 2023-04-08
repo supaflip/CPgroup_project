@@ -50,7 +50,7 @@ const DeleteWorkoutForm = ({
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col sm={4}>
+        <Col sm={3}>
           <Form.Group controlId="day">
             <Form.Control
               as="select"
@@ -64,13 +64,13 @@ const DeleteWorkoutForm = ({
                 .filter((day) => day.week_number === selectedWeek)
                 .map((day, index) => (
                   <option key={index} value={day.day_number}>
-                    {`Day ${day.day_number.slice(2)}`}
+                    {`Day ${day.day_number.slice(-1)}`}
                   </option>
                 ))}
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col sm={5}>
+        <Col sm={6}>
           <Form.Group controlId="workout">
             <Form.Control
               as="select"

@@ -96,7 +96,7 @@ const CreateModal = ({ data, onClose }) => {
       );
       // prevents duplicate Week numbers
       if (weekExists) {
-        alert("That Week already exists.");
+        alert(`Week ${weekFormData.week_number} already exists.`);
         return;
       }
       try {
@@ -115,17 +115,27 @@ const CreateModal = ({ data, onClose }) => {
     }
 
     if (dayFormData.day_number) {
+      // prevents Day number to be higher than 7 or more than 1 character
+      const dayNumber = Number(dayFormData.day_number);
+      if (dayNumber > 7) {
+        alert(`There are only 7 days in a week.`);
+        return;
+      }
+
+      // prevents duplicate Days in the selected Week
       const dayExists = days.some(
         (day) =>
           day.week_number === dayFormData.week &&
           day.day_number === `${dayFormData.week}.${dayFormData.day_number}`
       );
-      // prevents duplicate Days in the selected Week
       if (dayExists) {
-        alert(`That Day already exists in Week ${dayFormData.week}.`);
+        alert(
+          `Day ${dayFormData.day_number} already exists in Week ${dayFormData.week}.`
+        );
         return;
       }
 
+      // sets up formatting of day number for use in axios.post
       const dayDataWithWeekNumber = {
         ...dayFormData,
         day_number: `${dayFormData.week}.${dayFormData.day_number}`,

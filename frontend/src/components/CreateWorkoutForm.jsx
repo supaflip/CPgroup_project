@@ -84,7 +84,7 @@ const CreateWorkoutForm = ({
             name="note"
             value={workoutFormData.note}
             onChange={handleChange}
-            placeholder="A brief note or directive as needed"
+            placeholder="A brief note or directive"
           />
         </Form.Group>
       </Row>

@@ -5,8 +5,8 @@ import UpdateWorkoutForm from './UpdateWorkoutForm';
 function WorkoutList(props) {
 
   const [showModal, setShowModal] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
+  // const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const srcPage = window.location.pathname;
 
