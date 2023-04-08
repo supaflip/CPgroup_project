@@ -79,7 +79,7 @@ function HomePage({ USER_AUTH }) {
               <div>
                 <br></br>
                 <hr />
-                <WeekList weeks={weeks} />
+                <WeekList weeks={weeks} USER_AUTH={USER_AUTH}/>
               </div>
             }
           />

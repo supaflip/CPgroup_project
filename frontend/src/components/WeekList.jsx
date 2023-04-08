@@ -18,7 +18,7 @@ function WeekList(props) {
             <Card eventkey={index} key={index} className="grid-item">
               <Card.Header>WEEK {week.week_number}</Card.Header>
               <Card.Body>
-                <DayList week_number={week.week_number} days={week.days} />
+                <DayList week_number={week.week_number} days={week.days} USER_AUTH={props.USER_AUTH}/>
               </Card.Body>
             </Card>
           ))}
