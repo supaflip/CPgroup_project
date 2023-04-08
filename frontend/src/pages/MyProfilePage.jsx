@@ -30,7 +30,7 @@ function MyProfilePage({USER_AUTH}) {
       <br></br>
       <br></br>
       <br></br>
-        <div>
+        <div className="profilecentered">
           <h2>My Bar Path Profile</h2>
           <MyProfileCard profile={myProfile} />
         </div>
