@@ -10,6 +10,16 @@ function WeekList(props) {
       return "Hello there is nothing"; // change to null when done testing
     }
 
+   props.weeks.sort((a, b) => {
+      if (a.week_number < b.week_number){
+        return -1;
+      }
+      if (a.week_number > b.week_number){
+        return 1;
+      }
+      return 0
+    });
+
     return (
       <Container>
         <Row>
