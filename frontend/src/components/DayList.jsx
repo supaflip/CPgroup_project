@@ -2,8 +2,6 @@ import WorkoutList from './WorkoutList';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-
 
 function DayList(props) {
   // Create a state variable to keep track of which workout was clicked
@@ -14,6 +12,16 @@ function DayList(props) {
   };
   // Create a function to handle closing the modal
   const handleClose = () => setSelectedWorkoutIndex(null);
+
+  props.days.sort((a, b) => {
+    if (a.day_number < b.day_number){
+      return -1;
+    }
+    if (a.day_number > b.day_number){
+      return 1;
+    }
+    return 0
+  });
 
   const renderDays = () => {
     if (!props.days) {

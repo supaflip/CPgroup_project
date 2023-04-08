@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Week(models.Model):
-    week_number = models.CharField(max_length=2, unique=True, primary_key=True, error_messages={'unique':"This week number already exists"}) # 1, 2,10 --testing out CharField instead of IntegerField
+    week_number = models.CharField(primary_key=True, max_length=2, unique=True, error_messages={'unique':"This week number already exists"}) # 1, 2,10 --testing out CharField instead of IntegerField
 
     class Meta:
         verbose_name = "week"
