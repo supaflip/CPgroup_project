@@ -11,13 +11,13 @@ function WeekList(props) {
     }
 
    props.weeks.sort((a, b) => {
-      if (a.week_number < b.week_number){
+      if (parseInt(a.week_number) < parseInt(b.week_number)){
         return -1;
       }
-      if (a.week_number > b.week_number){
+      if (parseInt(a.week_number) > parseInt(b.week_number)){
         return 1;
       }
-      return 0
+      return 0;
     });
 
     return (

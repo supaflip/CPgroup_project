@@ -97,7 +97,7 @@ const SignupForm = ({ setUserAuth }) => {
     }
 
     if (redirect) {
-        return <Navigate to="/myprofile/" replace={true} />  // change navigation to /profile/ for adding data based on Profile model fields
+        return <Navigate to="/create/" replace={true} />  // change navigation to /profile/ for adding data based on Profile model fields
     }
 
     return (
