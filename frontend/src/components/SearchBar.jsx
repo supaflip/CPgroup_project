@@ -44,7 +44,7 @@ function SearchBar({ onSearch }) {
       <br />
       <div>
       <Button onClick={handleShowNewClientModal}>Add New Client</Button>
-      <Modal show={showNewClientModal} onHide={handleCloseNewClientModal}>
+      <Modal className='backdrop' show={showNewClientModal} onHide={handleCloseNewClientModal}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Client</Modal.Title>
         </Modal.Header>
