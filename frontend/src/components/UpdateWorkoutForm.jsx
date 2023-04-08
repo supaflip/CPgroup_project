@@ -140,11 +140,12 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
             >
               {workouts.map((workout, index) => (
                 <option key={index} value={workout.id}>
-                  {workout.title}
+                  {index+1}: {workout.title}
                 </option>
               ))}
             </Form.Control>
           </Form.Group>
+          <br></br>
             <Form.Group controlId="title">
               <Form.Label>Title:</Form.Label>
               <Form.Control
@@ -155,6 +156,7 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
                 required
               />
             </Form.Group>
+            <br></br>
             <Form.Group controlId="note">
               <Form.Label>Note:</Form.Label>
               <Form.Control
@@ -164,6 +166,7 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <br></br>
             <Form.Group controlId="sets">
               <Form.Label>Sets:</Form.Label>
               <Form.Control
@@ -173,6 +176,7 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <br></br>
             <Form.Group controlId="reps">
               <Form.Label>Reps:</Form.Label>
               <Form.Control
@@ -182,6 +186,7 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <br></br>
             <Form.Group controlId="percentage">
               <Form.Label>Percentage:</Form.Label>
               <Form.Control
