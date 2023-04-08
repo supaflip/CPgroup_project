@@ -11,6 +11,16 @@ function WeekList(props) {
       return "Hello there is nothing"; // change to null when done testing
     }
 
+   props.weeks.sort((a, b) => {
+      if (parseInt(a.week_number) < parseInt(b.week_number)){
+        return -1;
+      }
+      if (parseInt(a.week_number) > parseInt(b.week_number)){
+        return 1;
+      }
+      return 0;
+    });
+
     return (
       <Container>
         <div className="grid-container">
