@@ -55,7 +55,7 @@ function ProfileList({ allProfiles }) {
 
       // "md={3}" means Col component takes up 3 out of 12 grid columns
       return (
-        <Col className="mb-4" key={profile.id} md={3}>
+        <Col style={{justifyContent: 'center'}}className="mx-4 mb-4"key={profile.id} lg={3} sm={5}>
           <ProfileCard profile={profile} />
         </Col>
       );
@@ -65,14 +65,17 @@ function ProfileList({ allProfiles }) {
   return(
     <div>
       <SearchBar onSearch={handleSearch} />
-      <div><h3>All Profiles</h3></div>
       <br />
-      <div className="list-container">
-        <Container>
-          <Row className="mb-3">{renderProfiles()}</Row>
+      <h3 className="textaligncenter">All Profiles</h3>
+      <div>
+        <Container className="containcenter">
+            <Row style={{marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center'}}className="mb-3">
+              {renderProfiles()}
+              </Row>
         </Container>
       </div>
-    </div>
+      </div>
+    
   )
 }
 

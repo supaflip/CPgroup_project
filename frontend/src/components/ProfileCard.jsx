@@ -28,7 +28,7 @@ function ProfileCard({profile}) {
 
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
+      <Card className="mx-auto " >
           <Card.Header>
             <Card.Title>{profile.user_name}</Card.Title>
             {(window.location.pathname === '/profile/') && <Button 
@@ -69,7 +69,7 @@ function ProfileCard({profile}) {
             <Card.Footer>
               <ButtonGroup size="sm">
                 <Button variant="primary" onClick={handleShowModal}>Update</Button>
-                <Button variant="danger" onClick={handleShowDeleteModal}>Delete</Button>
+                <button className="btn btn-outline-danger" variant="danger" onClick={handleShowDeleteModal}>Delete</button>
               </ButtonGroup>
 
               <UpdateProfileForm
