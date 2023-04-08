@@ -27,35 +27,23 @@ function SearchBar({ onSearch }) {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
-        <Container fluid>
-          {/* <Navbar.Brand>**Coach Menu</Navbar.Brand> */}
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
-              <Nav.Link onClick={handleShowNewClientModal}>Add New Client</Nav.Link>
-            </Nav>
-            <Form inline="true" onSubmit={handleSubmit}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <FormControl
-                  type="text"
-                  placeholder="Search Profiles"
-                  className="mr-sm-2"
-                  value={searchTerm}
-                  onChange={handleChange}
-                />
-                <Button variant="outline-success" type="submit">
-                  Search
-                </Button>
-              </div>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Form inline="true" onSubmit={handleSubmit}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FormControl
+            type="text"
+            placeholder="Search Profiles"
+            className="mr-sm-2"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+          <Button variant="outline-success" type="submit">
+            Search
+          </Button>
+        </div>
+      </Form>
+      <br />
+      <div>
+      <Button onClick={handleShowNewClientModal}>Add New Client</Button>
       <Modal show={showNewClientModal} onHide={handleCloseNewClientModal}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Client</Modal.Title>
@@ -64,6 +52,7 @@ function SearchBar({ onSearch }) {
           <SignupForm />
         </Modal.Body>
       </Modal>
+      </div>
     </>
   );
 }
