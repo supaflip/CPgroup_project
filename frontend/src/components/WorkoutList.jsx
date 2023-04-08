@@ -1,11 +1,25 @@
 import React, {useState} from 'react';
+import { Button } from "react-bootstrap";
+import UpdateWorkoutForm from './UpdateWorkoutForm';
 
 function WorkoutList(props) {
+
+  const [showModal, setShowModal] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const srcPage = window.location.pathname;
+
+  /* FUNCTIONS */
+  const handleShowModal = () => setShowModal(true);
+  
 
   const renderWorkouts = () => {
     if (!props.workouts) {
       return 'Hello there is nothing'; // Change to 'There are no workouts yet' or null when done testing
     }
+
+    console.log(props.workouts)
 
     return (
       <>
@@ -17,6 +31,12 @@ function WorkoutList(props) {
             {workout.percentage && <p>at {workout.percentage}% of your 1 rep max.</p>}
           </div>
         ))}
+        <Button variant="primary" onClick={handleShowModal}>Update</Button>
+        <UpdateWorkoutForm
+                showModal={showModal}
+                setShowModal={setShowModal}
+                workouts={props.workouts}
+                />
       </>
     );
   };
