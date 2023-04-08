@@ -26,6 +26,7 @@ class WeekViewSet(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = (HasGroupMembership, )
     
+    
     def get(self, request, week_number=None):
         if week_number: 
             data = Week.objects.get(week_number=week_number)

@@ -49,7 +49,7 @@ const DeleteDayForm = ({ days, weeks, dayFormData, handleChange }) => {
                 .filter((day) => day.week_number === selectedWeek)
                 .map((day, index) => (
                   <option key={index} value={day.day_number}>
-                    {`Day ${day.day_number.slice(2)}`}
+                    {`Day ${day.day_number.slice(-1)}`}
                   </option>
                 ))}
             </Form.Control>

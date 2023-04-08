@@ -105,7 +105,7 @@ const DeleteModal = ({ data, onClose }) => {
     if (dayFormData.day_number) {
       console.log("Day number to delete:", dayFormData.day_number); // delete when done testing
       const userConfirmation = window.confirm(
-        `Do you really want to delete Day ${dayFormData.day_number.slice(2)} of Week ${dayFormData.week}?`
+        `Do you really want to delete Day ${dayFormData.day_number.slice(-1)} of Week ${dayFormData.week}?`
       );
 
       if (userConfirmation) {
@@ -135,7 +135,7 @@ const DeleteModal = ({ data, onClose }) => {
     ) {
       console.log("Workout Title to delete:", workoutFormData.title); // delete when done testing
       const userConfirmation = window.confirm(
-        `Do you really want to remove "${workoutFormData.title}" from Day ${workoutFormData.day.slice(2)} of Week ${workoutFormData.week}?`
+        `Do you really want to remove "${workoutFormData.title}" from Day ${workoutFormData.day.slice(-1)} of Week ${workoutFormData.week}?`
       );
       if (userConfirmation) {
         try {
