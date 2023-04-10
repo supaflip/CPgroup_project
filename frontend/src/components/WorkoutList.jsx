@@ -4,7 +4,7 @@ import UpdateWorkoutForm from "./UpdateWorkoutForm";
 import { Navigate } from "react-router-dom";
 
 function WorkoutList(props) {
-  console.log("WorkoutList Props", props.USER_AUTH); // Delete when done testing
+  //console.log("WorkoutList Props", props.USER_AUTH); // Delete when done testing
 
   const [showModal, setShowModal] = useState(false);
 
