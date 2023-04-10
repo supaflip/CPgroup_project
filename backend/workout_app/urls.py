@@ -13,8 +13,5 @@ urlpatterns = [
     path('profiles/', views.ProfilesViewSet.as_view()), # retrieve all profiles
     path('profile/', views.ProfileViewSet.as_view()), # retrieve profile of user whose token is used in get request
     path('profile/<int:id>/', views.ProfileViewSet.as_view()),
-    path('is_coach/profiles/', views.CoachOnlyProfilesViewSet.as_view()), # retrieve all profiles
-    path('is_coach/profile/', views.CoachOnlyProfileViewSet.as_view()), # retrieve profile of user whose token is used in get request
-    path('is_coach/profile/<int:id>/', views.CoachOnlyProfileViewSet.as_view()),
     path('helper/', views.WorkoutHelper.as_view())
 ]

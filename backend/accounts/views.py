@@ -22,6 +22,7 @@ class CoachSignupView(CreateAPIView):
             password = serializer.validated_data["password"]
             user = User.objects.create_user(username=username, password=password)
             user.groups.add(Group.objects.get(name='Coach'))
+            Profile.objects.create(user=user) 
 
 class SignupView(CreateAPIView):
     queryset = User.objects.all()
