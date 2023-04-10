@@ -5,9 +5,9 @@ import axios from "axios";
 
 const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const handleCloseModal = () => setShowModal(false);
-  
+
     const token = localStorage.getItem("token");
-    const BASE_URL = "http://127.0.0.1:8000/workouts";
+    const BASE_URL = "http://localhost:8000/workouts";
 
     const [formData, setFormData] = useState({
         user: profile.user,
@@ -73,14 +73,20 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
 
     }
 
-    const handleChange = (e) => {
-        setFormData({
+    const handleIntegerChange = (e) => {
+        const value = e.target.value;
+        const intValue = parseInt(value);
+        console.log(intValue);
+
+        if (!isNaN(intValue)) {
+            console.log(intValue);
+          setFormData({
             ...formData,
             user: profile.user,
-            [e.target.name]: e.target.value,
+            [e.target.name]: intValue,
           });
-          //console.log(formData, "DATA OF THE FORM IS NEWLY SET"); // delete when done, for testing only      
-    }
+        }
+      };
 
 
     return (
@@ -93,7 +99,7 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Weight Unit</Form.Label>
-                        <Form.Select name="weights" value={formData.weights} onChange={handleChange}>
+                        <Form.Select name="weights" value={formData.weights} onChange={handleIntegerChange}>
                             <option value="">--Please choose your preferred weight system--</option>
                             <option value="1">English -- LBs</option>
                             <option value="2">Metric -- KGs</option>
@@ -101,19 +107,19 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Max Snatch :</Form.Label>
-                        <Form.Control name="max_snatch" type="number" id="max_snatch" value={formData.max_snatch} onChange={handleChange}/>
+                        <Form.Control step={1} name="max_snatch" type="number" id="max_snatch" value={formData.max_snatch} onChange={handleIntegerChange}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Max Clean &amp; Jerk:</Form.Label>
-                        <Form.Control name="max_cleanjerk" type="number" id="max_cleanjerk" value={formData.max_cleanjerk} onChange={handleChange}/>
+                        <Form.Control step={1} name="max_cleanjerk" type="number" id="max_cleanjerk" value={formData.max_cleanjerk} onChange={handleIntegerChange}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Max Front Squat</Form.Label>
-                        <Form.Control name="max_frontsquat" type="number" id="max_frontsquat" value={formData.max_frontsquat} onChange={handleChange}/>
+                        <Form.Control step={1} name="max_frontsquat" type="number" id="max_frontsquat" value={formData.max_frontsquat} onChange={handleIntegerChange}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Max Back Squat</Form.Label>
-                        <Form.Control name="max_backsquat" type="number" id="max_backsquat" value={formData.max_backsquat} onChange={handleChange}/>
+                        <Form.Control step={1} name="max_backsquat" type="number" id="max_backsquat" value={formData.max_backsquat} onChange={handleIntegerChange}/>
                     </Form.Group>
                 </Form>
             </Modal.Body>

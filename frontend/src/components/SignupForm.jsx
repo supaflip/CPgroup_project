@@ -10,8 +10,6 @@ const SignupForm = ({ setUserAuth }) => {
     const [formData, setFormData] = useState({ username: '', password: '', });
     const [redirect, setRedirect] = useState(false);
 
-    const navigate = useNavigate();
-
     const srcPage = window.location.pathname;
     const { username, password } = formData;
 
@@ -97,7 +95,7 @@ const SignupForm = ({ setUserAuth }) => {
     }
 
     if (redirect) {
-        return (isCoachChecked ? <Navigate to="/create/" replace={true} /> : <Navigate to="/myprofile/" replace={true} />)   // change navigation to /profile/ for adding data based on Profile model fields
+        return (<Navigate to="/myprofile/" replace={true} />)   // change navigation to /profile/ for adding data based on Profile model fields
     }
 
     return (
