@@ -8,7 +8,6 @@ function RandomWorkoutPage({USER_AUTH}) {
 
 
 const [select, setSelect] = useState("Abdominals");
-const [isExpanded, setIsExpanded] = useState(false);
 
 
 const handleButtonClick = () => {

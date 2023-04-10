@@ -2,7 +2,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 
 const DeleteWeekForm = ({ weeks, weekFormData, handleChange }) => {
-  console.log("DeleteWeekForm", weeks);
+  //console.log("DeleteWeekForm", weeks);
 
   return (
     <Form>

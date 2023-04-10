@@ -59,7 +59,7 @@ const DeleteModal = ({ data, onClose }) => {
   };
   const handleDayChange = (e) => {
     setDayFormData({ ...dayFormData, [e.target.name]: e.target.value });
-    console.log("Selected day_number:", e.target.value);
+    //console.log("Selected day_number:", e.target.value);
   };
   const handleWorkoutChange = (e) => {
     // this finds the workout object from the workouts array
