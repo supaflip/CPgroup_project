@@ -15,7 +15,7 @@ const UpdateWorkoutForm = ({ showModal, setShowModal, workouts }) => {
     percentage: "",
   });
 
-  console.log(workouts);
+  //console.log(workouts);
 
   // Executed when component first mounts
   useEffect(() => {
