@@ -45,7 +45,7 @@ const SigninPage = ({setUserAuth}) => {
       };
       const body = JSON.stringify(user);
       const res = await axios.post(
-        "http://127.0.0.1:8000/accounts/signin/",
+        "http://localhost:8000/accounts/signin/",
         body,
         config
       );

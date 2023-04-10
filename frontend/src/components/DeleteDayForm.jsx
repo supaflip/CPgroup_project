@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const DeleteDayForm = ({ days, weeks, dayFormData, handleChange }) => {
-  console.log("DeleteDayForm", weeks, days);  // delete when done testing
+  //console.log("DeleteDayForm", weeks, days);  // delete when done testing
 
   // this useState will only allow the days from the selected week to show up in the drop down list
   const [selectedWeek, setSelectedWeek] = useState("");

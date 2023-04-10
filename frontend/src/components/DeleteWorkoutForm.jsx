@@ -10,7 +10,7 @@ const DeleteWorkoutForm = ({
   workoutFormData,
   handleChange,
 }) => {
-  console.log("DeleteWorkoutForm", workouts); // delete when done testing
+  //console.log("DeleteWorkoutForm", workouts); // delete when done testing
 
   // this useState will only allow the days from the selected week to show up in the drop down list
   const [selectedWeek, setSelectedWeek] = useState("");

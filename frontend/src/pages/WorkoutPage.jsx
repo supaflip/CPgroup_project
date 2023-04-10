@@ -7,7 +7,7 @@ function WorkoutPage({workouts}) {
   // console.log("Workout Params", params)  // delete when done testing
   // console.log(params.workoutID)  // delete when done.  workoutID for use to show only the workouts for the day being displayed
   const exercise = workouts.find(workout => workout.id.toString() === params.workoutID)
-  console.log("This is exercise", exercise)
+  //console.log("This is exercise", exercise)
   return (
     <div>
       <br></br>

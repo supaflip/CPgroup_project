@@ -76,10 +76,10 @@ const UpdateProfileForm = ({ showModal, setShowModal, profile }) => {
     const handleIntegerChange = (e) => {
         const value = e.target.value;
         const intValue = parseInt(value);
-        console.log(intValue);
+        //console.log(intValue);
 
         if (!isNaN(intValue)) {
-            console.log(intValue);
+            //console.log(intValue);
           setFormData({
             ...formData,
             user: profile.user,

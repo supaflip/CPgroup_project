@@ -17,7 +17,7 @@ const UpdateWeekForm = ({ week, handleClose }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.put(
-        `http://127.0.0.1:8000/workouts/week/${week.week_number}/`,
+        `http://localhost:8000/workouts/week/${week.week_number}/`,
         formData,
         {
           headers: {

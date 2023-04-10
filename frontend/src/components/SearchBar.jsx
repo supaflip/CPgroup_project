@@ -21,7 +21,7 @@ function SearchBar({ onSearch }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("searchTerm", searchTerm); // delete when done testing
+    //console.log("searchTerm", searchTerm); // delete when done testing
     onSearch(searchTerm);
   };
 

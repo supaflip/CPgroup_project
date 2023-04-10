@@ -5,13 +5,13 @@ import Col from 'react-bootstrap/Col';
 import { Button } from 'react-bootstrap';
 
 function RandomWorkoutUI(props) {
-  console.log(props.randomWorkout.name)
+  //console.log(props.randomWorkout.name)
   let name = props.randomWorkout.name
   let equipment = props.randomWorkout.equipment
   let type = props.randomWorkout.type
   let instructions = props.randomWorkout.instructions
   let musclegroup = props.randomWorkout.muscle
-  console.log(equipment)
+  //console.log(equipment)
   
   if (equipment === "body_only"){
     equipment = "Body Only"
@@ -35,7 +35,7 @@ function RandomWorkoutUI(props) {
   instructionsfinal = instructions.replace('\\"V\\"', '\"V\"')
   instructionsfinal = instructions.replace('\\"kick\\"', '\"kick\"')
 
-  console.log(instructionsfinal)
+  //console.log(instructionsfinal)
 
 
   return (

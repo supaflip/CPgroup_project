@@ -179,7 +179,7 @@ const CreateModal = ({ data, onClose }) => {
 
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/workouts/workout/`,
+          `http://localhost:8000/workouts/workout/`,
           workoutDataWithDayId,
           {
             headers: {

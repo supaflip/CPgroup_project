@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const CreateDayForm = ({ days, weeks, dayFormData, handleChange }) => {
-  console.log("CreateDayForm", days)  // delete when done testing
 
   return (
     <Form>
