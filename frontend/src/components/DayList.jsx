@@ -56,7 +56,7 @@ function DayList(props) {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <WorkoutList day={day.day_number} workouts={day.workouts} />
+                <WorkoutList day={day.day_number} workouts={day.workouts} USER_AUTH={props.USER_AUTH}/>
               </Modal.Body>
             </Modal>
           </div>
