@@ -54,6 +54,10 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
 .modal {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
   border-radius: 6px;
@@ -164,10 +168,9 @@ button:focus-visible {
 
 .navbar .ex2:hover {
   font-size: 102%;
-  color: rgb(19, 0, 160) !important;
+  color: blue !important;
   font-weight: bold;
-  border-bottom: 2px solid rgb(19, 0, 160);
-
+  /* border-bottom: 2px solid blue; */
 }
 
 .ex2:active{
@@ -193,7 +196,7 @@ button:focus-visible {
 .fontsize10{
   font-size: smaller !important;
 }
-}
+
 
 .grid-container {
   display: grid;
@@ -205,4 +208,4 @@ button:focus-visible {
 .grid-item {
   width: 200px;
 }
-
+}
