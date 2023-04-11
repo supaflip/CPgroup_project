@@ -98,9 +98,6 @@ const SigninPage = ({setUserAuth}) => {
       <p className='textalignleft'>
         Don't have an account? <Link to='/signup'>Sign Up</Link>
       </p>
-      <p className='textalignleft'>
-        Forgot Your Password? <Link to='/reset-password'>Reset Password</Link>
-      </p>
     </div>
 );
 }
